@@ -2,8 +2,10 @@ package com.example.easerver;
 
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Handlers.AdminHandlers.AddNewUserHandler;
+import com.example.easerver.Handlers.ApplicantsHandlers.ApplicantProfileHandler;
 import com.example.easerver.Handlers.ApplicantsHandlers.ApplicantSignInHandler;
 import com.example.easerver.Handlers.ApplicantsHandlers.ApplicantSignUpHandler;
+import com.example.easerver.Handlers.ApplicantsHandlers.ReportHandler;
 import com.example.easerver.Handlers.SystemSignInHandler;
 import com.sun.net.httpserver.HttpServer;
 
@@ -40,6 +42,8 @@ public class MyServer {
         //контексты заявителя
         server.createContext("/auth/signup", new ApplicantSignUpHandler());
         server.createContext("/auth/signin", new ApplicantSignInHandler());
+        server.createContext("/profile", new ApplicantProfileHandler());
+        server.createContext("/sendreport", new ReportHandler());
 
 
         server.setExecutor(null);
@@ -61,18 +65,18 @@ public class MyServer {
     private static void handleConsoleInput() {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
-                System.out.println("Введите 'stop' для остановки сервера или 'exit' для выхода:");
+                System.out.println("Введите '0' для остановки сервера или '1' для выхода:");
                 String input = scanner.nextLine().toLowerCase();
 
                 switch (input) {
-                    case "stop":
+                    case "0":
                         if (serverRunning) {
                             stopServer();
                         } else {
                             System.out.println("Сервер не запущен.");
                         }
                         break;
-                    case "exit":
+                    case "1":
                         if (serverRunning) {
                             stopServer();
                         }

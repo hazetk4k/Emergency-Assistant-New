@@ -5,49 +5,28 @@ import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Entities.UserDataEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
-public class ApplicantDAOImpl implements ApplicantDAO {
-
-    private EntityManager entityManager;
-
-    public ApplicantDAOImpl() {
-        this.entityManager = EntityManagerUtil.getEntityManager();
-    }
+public class ApplicantDAOImpl extends GenericDAOImpl<UserDataEntity, Integer> implements ApplicantDAO {
 
     @Override
-    public UserDataEntity findById(Integer integer) {
-        return null;
-    }
+    public UserDataEntity findByEmail(String email) {
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            TypedQuery<UserDataEntity> query = entityManager.createQuery(
+                    "SELECT u FROM UserDataEntity u WHERE u.email = :email ",
+                    UserDataEntity.class);
+            query.setParameter("email", email);
 
-    @Override
-    public List<UserDataEntity> findAll() {
-        return null;
-    }
-
-    @Override
-    public void save(UserDataEntity entity) {
-        EntityTransaction transaction = null;
-        try {
-            transaction = entityManager.getTransaction();
-            transaction.begin();
-
-            entityManager.persist(entity);
-
-            transaction.commit();
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Пользователь с email " + email + " не найден.");
+            return null;
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            System.out.println(e.getMessage());
-        } finally {
-            entityManager.close();
+            System.out.println("Ошибка при поиске пользователя по email: " + e.getMessage());
+            return null;
         }
-    }
-
-    @Override
-    public void delete(UserDataEntity entity) {
-
     }
 }

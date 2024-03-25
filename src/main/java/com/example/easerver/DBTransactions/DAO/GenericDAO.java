@@ -1,5 +1,8 @@
 package com.example.easerver.DBTransactions.DAO;
 
+
+import jakarta.persistence.Entity;
+
 import java.util.List;
 
 public interface GenericDAO<T, ID> {
