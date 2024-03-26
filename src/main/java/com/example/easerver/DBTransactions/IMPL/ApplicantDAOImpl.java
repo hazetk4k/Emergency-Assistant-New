@@ -2,14 +2,10 @@ package com.example.easerver.DBTransactions.IMPL;
 
 import com.example.easerver.DBTransactions.DAO.ApplicantDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
-import com.example.easerver.Entities.TypeEmEntity;
 import com.example.easerver.Entities.UserDataEntity;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-
-import java.util.List;
 
 public class ApplicantDAOImpl extends GenericDAOImpl<UserDataEntity, Integer> implements ApplicantDAO {
 
