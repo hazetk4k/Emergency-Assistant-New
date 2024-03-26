@@ -4,6 +4,7 @@ import com.example.easerver.DBTransactions.DAO.GenericDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 

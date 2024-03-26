@@ -21,7 +21,6 @@ public class ReportHandler extends PostHandler {
         this.reportDAO = new ReportDAOImpl();
     }
 
-
     @Override
     public int handlePostInput(String output) {
         try {
