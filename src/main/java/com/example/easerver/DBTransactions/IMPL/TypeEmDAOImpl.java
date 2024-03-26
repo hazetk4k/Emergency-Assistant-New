@@ -11,6 +11,10 @@ import java.util.List;
 
 public class TypeEmDAOImpl extends GenericDAOImpl<TypeEmEntity, Integer> implements TypeEmDAO {
 
+    public TypeEmDAOImpl() {
+        super(TypeEmEntity.class);
+    }
+
     @Override
     public List<TypeEmEntity> findAll() {
         try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {

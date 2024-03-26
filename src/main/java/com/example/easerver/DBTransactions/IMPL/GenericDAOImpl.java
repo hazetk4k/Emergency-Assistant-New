@@ -10,14 +10,41 @@ import java.util.List;
 
 public class GenericDAOImpl<T, ID> implements GenericDAO<T, ID> {
 
+    private final Class<T> entityClass;
+
+    public GenericDAOImpl(Class<T> entityClass) {
+        this.entityClass = entityClass;
+    }
+
     @Override
     public T findById(ID id) {
-        return null;
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            return entityManager.find(entityClass, id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public List<T> findAll() {
-        return null;
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            List<T> resultList = null;
+            try {
+                transaction.begin();
+                String queryString = "SELECT e FROM " + entityClass.getSimpleName() + " e";
+                TypedQuery<T> query = entityManager.createQuery(queryString, entityClass);
+                resultList = query.getResultList();
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction != null && transaction.isActive()) {
+                    transaction.rollback();
+                }
+                System.out.println(e.getMessage());
+            }
+            return resultList;
+        }
     }
 
     @Override
@@ -39,6 +66,18 @@ public class GenericDAOImpl<T, ID> implements GenericDAO<T, ID> {
 
     @Override
     public void delete(T entity) {
-
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            EntityTransaction transaction = entityManager.getTransaction();
+            try {
+                transaction.begin();
+                entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+                transaction.commit();
+            } catch (Exception e) {
+                if (transaction != null && transaction.isActive()) {
+                    transaction.rollback();
+                }
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

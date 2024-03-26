@@ -2,7 +2,7 @@ package com.example.easerver.Models.Report;
 
 public class Report {
     public String email;
-    public ReportComponents reportComponents;
+    public ReportComponents report;
 
     public String getEmail() {
         return email;
@@ -13,15 +13,15 @@ public class Report {
     }
 
     public ReportComponents getReportComponents() {
-        return reportComponents;
+        return report;
     }
 
-    public void setReportComponents(ReportComponents reportComponents) {
-        this.reportComponents = reportComponents;
+    public void setReportComponents(ReportComponents report) {
+        this.report = report;
     }
 
-    public Report(String email, ReportComponents reportComponents) {
+    public Report(String email, ReportComponents report) {
         this.email = email;
-        this.reportComponents = reportComponents;
+        this.report = report;
     }
 }

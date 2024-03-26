@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class ReportHandler extends PostHandler {
 
@@ -40,6 +41,7 @@ public class ReportHandler extends PostHandler {
     private static ReportsEntity getReportsEntity(Report report) {
         ReportComponents reportComponents = report.getReportComponents();
         ReportsEntity reportsEntity = new ReportsEntity();
+        Timestamp currentDate = Timestamp.valueOf(LocalDateTime.now());
 
         reportsEntity.setType(reportComponents.type);
         reportsEntity.setPlace(reportComponents.place);
@@ -50,6 +52,7 @@ public class ReportHandler extends PostHandler {
         reportsEntity.setAreThereAnyCasualties(reportComponents.areThereAnyCasualties);
         reportsEntity.setUserEmail(report.email);
         reportsEntity.setWasSeen(false);
+        reportsEntity.setRecievedDateTime(currentDate);
 
         return reportsEntity;
     }

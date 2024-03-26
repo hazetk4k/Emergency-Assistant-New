@@ -5,4 +5,7 @@ import com.example.easerver.Entities.ReportsEntity;
 
 public class ReportDAOImpl extends GenericDAOImpl<ReportsEntity, Integer> implements ReportDAO{
 
+    public ReportDAOImpl() {
+        super(ReportsEntity.class);
+    }
 }
