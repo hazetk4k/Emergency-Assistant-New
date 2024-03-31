@@ -5,6 +5,7 @@ import com.example.easerver.DBTransactions.IMPL.ApplicantDAOImpl;
 import com.example.easerver.Entities.UserDataEntity;
 import com.example.easerver.Handlers.BaseHandlers.PostHandler;
 import com.example.easerver.Models.ApplicantModels.ApplicantAuth;
+import com.example.easerver.Services.UserAuthenticator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -28,16 +29,10 @@ public class ApplicantSignInHandler extends PostHandler {
 
             UserDataEntity userDataEntity = applicantDAO.findByEmail(applicantAuth.getEmail());
             if (userDataEntity != null) {
-                if (Objects.equals(userDataEntity.getPassword(), applicantAuth.getPassword())) {
-                    System.out.println("Все прошло");
-                    return 200;
-                } else {
-                    System.out.println("Не верный пароль");
-                    return 401;
-                }
+                return UserAuthenticator.authenticateUser(userDataEntity.getPassword(), applicantAuth.getPassword());
             } else {
                 System.out.println("Пользователь не найден");
-                return 404; //409
+                return 404;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
