@@ -9,8 +9,6 @@ import com.example.easerver.Services.UserAuthenticator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.util.Objects;
-
 public class ApplicantSignInHandler extends PostHandler {
 
     private final ApplicantDAO applicantDAO;

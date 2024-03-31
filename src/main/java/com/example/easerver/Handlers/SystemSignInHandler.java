@@ -9,7 +9,6 @@ import com.example.easerver.Services.UserAuthenticator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import jakarta.persistence.NoResultException;
 
 import java.util.HashMap;
 import java.util.Map;
