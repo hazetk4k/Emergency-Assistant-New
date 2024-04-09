@@ -32,34 +32,27 @@ public class SystemSignInHandler extends PostHandler {
             System.out.println("======================");
             System.out.println("Получены данные:" + systemUser.getLogin() + " " + systemUser.getPassword());
 
-            // Проверяем, что запрос содержит логин и пароль
             if (systemUser.getLogin() == null || systemUser.getPassword() == null) {
-                return 400; // Bad Request
+                return 400;
             }
 
-            // Получаем пользователя по логину
             try {
                 systUserEntity = systemUserDAO.findByUserLogin(systemUser.getLogin());
 
-                // Если пользователь не найден, вернуть код 404 (Not Found)
                 if (systUserEntity == null) {
                     return 404; // Not Found
                 }
             } catch (Exception e) {
-                // В случае возникновения исключения при поиске пользователя, возвращаем код 404 (Not Found)
                 System.out.println("Ошибка при поиске пользователя: " + e.getMessage());
                 return 404; // Not Found
             }
 
-            // Авторизуем пользователя
             return UserAuthenticator.authenticateUser(systUserEntity.getPassword(), systemUser.getPassword());
 
         } catch (JsonSyntaxException e) {
-            // Некорректный формат JSON в теле запроса
             System.out.println("Некорректный формат JSON: " + e.getMessage());
             return 400; // Bad Request
         } catch (Exception e) {
-            // Возникла ошибка при обработке запроса
             System.out.println("Ошибка при обработке запроса: " + e.getMessage());
             return 500; // Internal Server Error
         }

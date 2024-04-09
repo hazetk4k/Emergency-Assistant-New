@@ -3,6 +3,7 @@ package com.example.easerver;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Handlers.AdminHandlers.AddNewUserHandler;
 import com.example.easerver.Handlers.ApplicantsHandlers.*;
+import com.example.easerver.Handlers.DispatcherHandlers.AllReportsHandler;
 import com.example.easerver.Handlers.SystemSignInHandler;
 import com.sun.net.httpserver.HttpServer;
 
@@ -34,7 +35,7 @@ public class MyServer {
         server.createContext("/add-new-user", new AddNewUserHandler());
 
         //контексты диспетчера
-
+        server.createContext("/get-all-reports", new AllReportsHandler());
 
         //контексты заявителя
         server.createContext("/auth/signup", new ApplicantSignUpHandler());
