@@ -18,7 +18,7 @@ public class ApplicantProfileHandler extends GetHandler {
     }
 
     @Override
-    protected String handleGet(Map<String, String> params) {
+    protected String handleGetRequest(Map<String, String> params) {
         try {
             UserDataEntity userProfile = applicantDAO.findByEmail(params.get("email"));
             Gson gson = new Gson();

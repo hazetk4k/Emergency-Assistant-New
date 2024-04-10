@@ -20,7 +20,7 @@ public class ApplicantSignInHandler extends PostHandler {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
-    protected int handlePostInput(String output) {
+    protected int handlePostRequest(String output) {
         try {
             ApplicantAuth applicantAuth = gson.fromJson(output, ApplicantAuth.class);
             System.out.println(applicantAuth.getEmail());

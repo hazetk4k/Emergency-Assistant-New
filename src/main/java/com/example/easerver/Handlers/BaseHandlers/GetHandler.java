@@ -10,14 +10,14 @@ import java.util.Map;
 
 public abstract class GetHandler extends BaseHandler {
     @Override
-    protected void makeHandle(HttpExchange exchange) {
+    protected void makeHandling(HttpExchange exchange) {
         try {
             String requestMethod = exchange.getRequestMethod();
             if (requestMethod.equalsIgnoreCase("GET")) {
                 String requestURI = exchange.getRequestURI().toString();
                 Map<String, String> params = parseQueryParams(requestURI);
 
-                String response = handleGet(params);
+                String response = handleGetRequest(params);
 
                 byte[] bytes = response.getBytes();
                 exchange.sendResponseHeaders(200, bytes.length);
@@ -52,5 +52,5 @@ public abstract class GetHandler extends BaseHandler {
         return params;
     }
 
-    protected abstract String handleGet(Map<String, String> params);
+    protected abstract String handleGetRequest(Map<String, String> params);
 }

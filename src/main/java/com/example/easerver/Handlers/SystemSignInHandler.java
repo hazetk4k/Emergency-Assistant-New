@@ -26,7 +26,7 @@ public class SystemSignInHandler extends PostHandler {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
-    protected int handlePostInput(String output) {
+    protected int handlePostRequest(String output) {
         try {
             SystemUser systemUser = gson.fromJson(output, SystemUser.class);
             System.out.println("======================");

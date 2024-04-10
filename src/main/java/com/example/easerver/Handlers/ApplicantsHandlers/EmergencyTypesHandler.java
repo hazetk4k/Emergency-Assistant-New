@@ -20,7 +20,7 @@ public class EmergencyTypesHandler extends GetHandler {
     }
 
     @Override
-    public String handleGet(Map<String, String> params) {
+    public String handleGetRequest(Map<String, String> params) {
         try {
             List<TypeEmEntity> list = typeEmDAO.findAll();
             Gson gson = new Gson();

@@ -3,9 +3,9 @@ package com.example.easerver.Models;
 public class SystemUser {
     private String login;
     private String password;
-    private Boolean status;
+    private Byte status;
 
-    public SystemUser(String login, String password, Boolean status) {
+    public SystemUser(String login, String password, Byte status) {
         this.login = login;
         this.password = password;
         this.status = status;
@@ -27,11 +27,11 @@ public class SystemUser {
         this.password = password;
     }
 
-    public Boolean getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 }

@@ -19,7 +19,7 @@ public class ApplicantSignUpHandler extends PostHandler {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Override
-    protected int handlePostInput(String output) {
+    protected int handlePostRequest(String output) {
         try {
 
             ApplicantReg applicantReg = gson.fromJson(output, ApplicantReg.class);

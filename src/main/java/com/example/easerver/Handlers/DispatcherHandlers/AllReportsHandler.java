@@ -24,7 +24,7 @@ public class AllReportsHandler extends GetHandler {
     }
 
     @Override
-    protected String handleGet(Map<String, String> params) {
+    protected String handleGetRequest(Map<String, String> params) {
         List<Object> reportsList = new ArrayList<>();
         try {
             List<UserDataEntity> users = applicantDAO.findAll();

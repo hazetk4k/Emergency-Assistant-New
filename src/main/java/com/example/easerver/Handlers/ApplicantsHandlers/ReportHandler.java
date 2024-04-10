@@ -23,7 +23,7 @@ public class ReportHandler extends PostHandler {
     }
 
     @Override
-    public int handlePostInput(String output) {
+    public int handlePostRequest(String output) {
         try {
             Report report = gson.fromJson(output, Report.class);
             ReportsEntity reportsEntity = getReportsEntity(report);

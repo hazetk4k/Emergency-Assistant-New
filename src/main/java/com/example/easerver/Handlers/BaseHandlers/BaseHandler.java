@@ -10,13 +10,13 @@ public abstract class BaseHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         try {
-            makeHandle(exchange);
+            makeHandling(exchange);
         } catch (Exception e) {
             handleException(exchange, e);
         }
     }
 
-    protected abstract void makeHandle(HttpExchange exchange) throws IOException;
+    protected abstract void makeHandling(HttpExchange exchange) throws IOException;
 
     protected void handleException(HttpExchange exchange, Exception e) throws IOException {
         exchange.sendResponseHeaders(500, 0);
