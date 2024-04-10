@@ -2,7 +2,9 @@ package com.example.easerver;
 
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Handlers.AdminHandlers.AddNewUserHandler;
+import com.example.easerver.Handlers.AdminHandlers.DeleteUserHandler;
 import com.example.easerver.Handlers.AdminHandlers.GetAllUsersHandler;
+import com.example.easerver.Handlers.AdminHandlers.UpdateUserStatus;
 import com.example.easerver.Handlers.ApplicantsHandlers.*;
 import com.example.easerver.Handlers.DispatcherHandlers.AllReportsHandler;
 import com.example.easerver.Handlers.SystemSignInHandler;
@@ -34,7 +36,8 @@ public class MyServer {
 
         //контексты администратора
         server.createContext("/add-new-user", new AddNewUserHandler());
-        server.createContext("/update-user-status", new AddNewUserHandler());
+        server.createContext("/delete-user", new DeleteUserHandler());
+        server.createContext("/update-user-status", new UpdateUserStatus());
         server.createContext("/get-all-system-users", new GetAllUsersHandler());
 
         //контексты диспетчера

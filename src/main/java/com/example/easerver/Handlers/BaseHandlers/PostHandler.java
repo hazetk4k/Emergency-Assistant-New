@@ -9,7 +9,9 @@ public abstract class PostHandler extends RequestBodyHandler {
     protected void handleRequestBody(HttpExchange exchange, String requestBody) {
         try {
             String requestMethod = exchange.getRequestMethod();
+            System.out.println(requestMethod);
             if (requestMethod.equalsIgnoreCase("POST")) {
+
                 int code = handlePostRequest(requestBody);
                 System.out.println(code);
 

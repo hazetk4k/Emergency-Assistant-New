@@ -10,7 +10,9 @@ public abstract class PutHandler extends RequestBodyHandler {
         try {
             String requestMethod = exchange.getRequestMethod();
             if (requestMethod.equalsIgnoreCase("PUT")) {
+
                 int code = handlePutRequest(requestBody);
+
                 System.out.println(code);
                 exchange.sendResponseHeaders(code, -1);
             } else {

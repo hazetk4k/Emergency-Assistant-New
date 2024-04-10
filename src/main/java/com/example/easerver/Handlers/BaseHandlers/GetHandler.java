@@ -1,11 +1,9 @@
 package com.example.easerver.Handlers.BaseHandlers;
 
+import com.example.easerver.Services.QueryParamClass;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.OutputStream;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.Map;
 
 public abstract class GetHandler extends BaseHandler {
@@ -15,7 +13,7 @@ public abstract class GetHandler extends BaseHandler {
             String requestMethod = exchange.getRequestMethod();
             if (requestMethod.equalsIgnoreCase("GET")) {
                 String requestURI = exchange.getRequestURI().toString();
-                Map<String, String> params = parseQueryParams(requestURI);
+                Map<String, String> params = QueryParamClass.parseQueryParams(requestURI);
 
                 String response = handleGetRequest(params);
 
@@ -30,26 +28,6 @@ public abstract class GetHandler extends BaseHandler {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private Map<String, String> parseQueryParams(String uri) {
-        Map<String, String> params = new HashMap<>();
-        try {
-            String[] parts = uri.split("\\?", 2);
-            if (parts.length > 1) {
-                String query = parts[1];
-                String[] pairs = query.split("&");
-                for (String pair : pairs) {
-                    int idx = pair.indexOf("=");
-                    String key = URLDecoder.decode(pair.substring(0, idx), StandardCharsets.UTF_8);
-                    String value = URLDecoder.decode(pair.substring(idx + 1), StandardCharsets.UTF_8);
-                    params.put(key, value);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return params;
     }
 
     protected abstract String handleGetRequest(Map<String, String> params);
