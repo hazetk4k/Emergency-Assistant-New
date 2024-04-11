@@ -29,7 +29,6 @@ public class SystemSignInHandler extends PostHandler {
     protected int handlePostRequest(String output) {
         try {
             SystemUser systemUser = gson.fromJson(output, SystemUser.class);
-            System.out.println("======================");
             System.out.println("Получены данные:" + systemUser.getLogin() + " " + systemUser.getPassword());
 
             if (systemUser.getLogin() == null || systemUser.getPassword() == null) {

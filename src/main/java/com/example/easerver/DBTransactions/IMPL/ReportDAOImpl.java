@@ -3,12 +3,10 @@ package com.example.easerver.DBTransactions.IMPL;
 import com.example.easerver.DBTransactions.DAO.ReportDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Entities.ReportsEntity;
-import com.example.easerver.Entities.UserDataEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

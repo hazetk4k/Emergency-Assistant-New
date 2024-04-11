@@ -1,4 +1,4 @@
-package com.example.easerver.Handlers.AdminHandlers;
+package com.example.easerver.Handlers.AdminHandlers.UserSettings;
 
 import com.example.easerver.DBTransactions.DAO.SystemUserDAO;
 import com.example.easerver.DBTransactions.IMPL.SystemUserDAOImpl;

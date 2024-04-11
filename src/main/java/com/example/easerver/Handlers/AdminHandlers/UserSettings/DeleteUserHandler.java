@@ -1,4 +1,4 @@
-package com.example.easerver.Handlers.AdminHandlers;
+package com.example.easerver.Handlers.AdminHandlers.UserSettings;
 
 import com.example.easerver.DBTransactions.DAO.SystemUserDAO;
 import com.example.easerver.DBTransactions.IMPL.SystemUserDAOImpl;
@@ -18,20 +18,17 @@ public class DeleteUserHandler extends DeleteHandler {
     protected int handleDeleteRequest(Map<String, String> params) {
         try {
             if (!params.containsKey("user_id")) {
-                System.out.println("cringe1");
                 return 400;
             }
             int id;
             try {
                 id = Integer.parseInt(params.get("user_id"));
             } catch (NumberFormatException e) {
-                System.out.println("cringe2");
                 return 400;
             }
 
             SystUserEntity systUserEntity = systemUserDAO.findById(id);
             if (systUserEntity == null) {
-                System.out.println("cringe3");
                 return 404;
             }
 

@@ -11,6 +11,7 @@ public abstract class DeleteHandler extends BaseHandler {
         try {
             String requestMethod = exchange.getRequestMethod();
             if (requestMethod.equalsIgnoreCase("DELETE")) {
+                System.out.println("DELETE");
                 String requestURI = exchange.getRequestURI().toString();
                 Map<String, String> params = QueryParamClass.parseQueryParams(requestURI);
 

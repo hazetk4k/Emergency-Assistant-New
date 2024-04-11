@@ -10,6 +10,7 @@ public abstract class BaseHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         try {
+            System.out.println("======================");
             makeHandling(exchange);
         } catch (Exception e) {
             handleException(exchange, e);

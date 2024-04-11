@@ -12,6 +12,7 @@ public abstract class GetHandler extends BaseHandler {
         try {
             String requestMethod = exchange.getRequestMethod();
             if (requestMethod.equalsIgnoreCase("GET")) {
+                System.out.println("GET");
                 String requestURI = exchange.getRequestURI().toString();
                 Map<String, String> params = QueryParamClass.parseQueryParams(requestURI);
 
