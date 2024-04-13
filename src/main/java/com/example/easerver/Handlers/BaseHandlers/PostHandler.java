@@ -9,7 +9,6 @@ public abstract class PostHandler extends RequestBodyHandler {
     protected void handleRequestBody(HttpExchange exchange, String requestBody) {
         try {
             String requestMethod = exchange.getRequestMethod();
-            System.out.println(requestMethod);
             if (requestMethod.equalsIgnoreCase("POST")) {
                 System.out.println("POST");
                 int code = handlePostRequest(requestBody);
@@ -19,7 +18,7 @@ public abstract class PostHandler extends RequestBodyHandler {
                     exchange.sendResponseHeaders(code, -1);
                 } else if (shouldReturnResponseBody(requestBody)) {
                     String responseBody = generateResponseBody(requestBody);
-                    System.out.println("Ответ клиенту: " + responseBody);
+                    System.out.println("\nОтвет клиенту: " + responseBody);
                     exchange.sendResponseHeaders(code, responseBody.getBytes().length);
                     try (OutputStream os = exchange.getResponseBody()) {
                         os.write(responseBody.getBytes());

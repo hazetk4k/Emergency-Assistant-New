@@ -17,6 +17,7 @@ public abstract class GetHandler extends BaseHandler {
                 Map<String, String> params = QueryParamClass.parseQueryParams(requestURI);
 
                 String response = handleGetRequest(params);
+                System.out.println("\nОтвет клиенту: " + response);
 
                 byte[] bytes = response.getBytes();
                 exchange.sendResponseHeaders(200, bytes.length);

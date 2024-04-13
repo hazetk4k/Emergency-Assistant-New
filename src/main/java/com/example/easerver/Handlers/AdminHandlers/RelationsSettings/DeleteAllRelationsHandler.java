@@ -1,41 +1,44 @@
-package com.example.easerver.Handlers.AdminHandlers.KindSettings;
+package com.example.easerver.Handlers.AdminHandlers.RelationsSettings;
 
 import com.example.easerver.DBTransactions.DAO.KindEmDAO;
+import com.example.easerver.DBTransactions.DAO.RelationsDAO;
+import com.example.easerver.DBTransactions.DAO.ServicesDAO;
 import com.example.easerver.DBTransactions.IMPL.KindEmDAOImpl;
-import com.example.easerver.Entities.KindEmEntity;
+import com.example.easerver.DBTransactions.IMPL.RelationsDAOImpl;
+import com.example.easerver.DBTransactions.IMPL.ServicesDAOImpl;
 import com.example.easerver.Handlers.BaseHandlers.DeleteHandler;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Map;
-import java.util.Objects;
 
-public class DeleteKindHandler extends DeleteHandler {
+public class DeleteAllRelationsHandler extends DeleteHandler {
 
+    private final RelationsDAO relationsDAO;
+    private final ServicesDAO servicesDAO;
     private final KindEmDAO kindEmDAO;
 
-    public DeleteKindHandler() {
+    public DeleteAllRelationsHandler() {
         this.kindEmDAO = new KindEmDAOImpl();
+        this.relationsDAO = new RelationsDAOImpl();
+        this.servicesDAO = new ServicesDAOImpl();
     }
 
     @Override
     protected int handleDeleteRequest(Map<String, String> params) {
         try {
-            if (!params.containsKey("kind_id")) {
+            if (!params.containsKey("kind_name")) {
                 return 400;
             }
-            int kind_id;
+            String kind_name;
             try {
-                kind_id = Integer.parseInt(params.get("kind_id"));
+                kind_name = params.get("kind_name");
             } catch (NumberFormatException e) {
                 return 400;
             }
 
-            KindEmEntity kindEmEntity = kindEmDAO.findById(kind_id);
-            if (Objects.equals(kindEmEntity, null)) return 404;
+            int kind_id = kindEmDAO.getKindIdByName(kind_name);
 
             try {
-
-                kindEmDAO.delete(kindEmEntity);
+                relationsDAO.deleteByKindId(kind_id);
                 System.out.println("Все прошло");
                 return 200;
 
@@ -49,4 +52,3 @@ public class DeleteKindHandler extends DeleteHandler {
         }
     }
 }
-

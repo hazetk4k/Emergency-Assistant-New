@@ -4,7 +4,12 @@ import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Handlers.AdminHandlers.KindSettings.AddNewKindHandler;
 import com.example.easerver.Handlers.AdminHandlers.KindSettings.DeleteKindHandler;
 import com.example.easerver.Handlers.AdminHandlers.KindSettings.GetAllKindsHandler;
-import com.example.easerver.Handlers.AdminHandlers.KindSettings.SetUpChars;
+import com.example.easerver.Handlers.AdminHandlers.KindSettings.SetUpCharsHandler;
+import com.example.easerver.Handlers.AdminHandlers.RelationsSettings.*;
+import com.example.easerver.Handlers.AdminHandlers.TypeSettings.AddNewTypeHandler;
+import com.example.easerver.Handlers.AdminHandlers.TypeSettings.DeleteTypeHandler;
+import com.example.easerver.Handlers.AdminHandlers.TypeSettings.GetAllTypesHandler;
+import com.example.easerver.Handlers.AdminHandlers.TypeSettings.SetUpKindsHandler;
 import com.example.easerver.Handlers.AdminHandlers.UserSettings.AddNewUserHandler;
 import com.example.easerver.Handlers.AdminHandlers.UserSettings.DeleteUserHandler;
 import com.example.easerver.Handlers.AdminHandlers.UserSettings.GetAllUsersHandler;
@@ -37,10 +42,11 @@ public class MyServer {
 
         //общие контексты
         server.createContext("/system-sign-in", new SystemSignInHandler());
-
+        //TODO: Ошибки PostHandler - ов
+        //TODO: Ошибки GetHandler - ов
         //контексты администратора
         //Настройки видов ЧС
-        server.createContext("/set-up-chars", new SetUpChars());
+        server.createContext("/set-up-chars", new SetUpCharsHandler());
         server.createContext("/get-all-kinds", new GetAllKindsHandler());
         server.createContext("/add-new-kind", new AddNewKindHandler());
         server.createContext("/delete-kind", new DeleteKindHandler());
@@ -50,10 +56,21 @@ public class MyServer {
         server.createContext("/update-user-status", new UpdateUserStatus());
         server.createContext("/get-all-system-users", new GetAllUsersHandler());
         //Настройки типов ЧС
-
+        server.createContext("/set-up-kinds", new SetUpKindsHandler());
+        server.createContext("/get-all-types", new GetAllTypesHandler());
+        server.createContext("/add-new-type", new AddNewTypeHandler());
+        server.createContext("/delete-type", new DeleteTypeHandler());
+        //Настройка Связей видов и служб реагирования
+        server.createContext("/get-relations-list", new GetRelationsHandler());
+        server.createContext("/set-up-services", new SetUpServicesHandler());
+        server.createContext("/add-new-relation", new AddNewRelationHandler());
+        server.createContext("/delete-service-relation", new DeleteServiceRelationHandler());
+        server.createContext("/delete-all-kind-relations", new DeleteAllRelationsHandler());
 
         //контексты диспетчера
         server.createContext("/get-all-reports", new AllReportsHandler());
+        //TODO:Разобраться с get-that-report
+        server.createContext("/get-that-report", new AllReportsHandler());
 
         //контексты заявителя
         server.createContext("/auth/signup", new ApplicantSignUpHandler());

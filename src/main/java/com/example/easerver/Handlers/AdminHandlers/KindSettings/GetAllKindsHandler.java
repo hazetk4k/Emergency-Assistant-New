@@ -6,7 +6,6 @@ import com.example.easerver.DBTransactions.IMPL.CharEmDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.KindEmDAOImpl;
 import com.example.easerver.Entities.CharEmEntity;
 import com.example.easerver.Entities.KindEmEntity;
-import com.example.easerver.Entities.SystUserEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
 import com.google.gson.Gson;
 
@@ -32,14 +31,14 @@ public class GetAllKindsHandler extends GetHandler {
             List<KindEmEntity> listOfUsers = kindEmDAO.findAll();
             Gson gson = new Gson();
             for (KindEmEntity kindEm : listOfUsers) {
-                Map<String, Object> usersMap = new HashMap<>();
+                Map<String, Object> kindsMap = new HashMap<>();
 
-                usersMap.put("kind_id", kindEm.getKindId());
-                usersMap.put("kind_name", kindEm.getKindName());
+                kindsMap.put("kind_id", kindEm.getKindId());
+                kindsMap.put("kind_name", kindEm.getKindName());
                 CharEmEntity charEm = charEmDAO.findById(kindEm.getIdChar());
-                usersMap.put("char_name", charEm.getCharName());
+                kindsMap.put("char_name", charEm.getCharName());
 
-                kindList.add(usersMap);
+                kindList.add(kindsMap);
             }
 
             return gson.toJson(kindList);

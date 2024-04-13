@@ -17,9 +17,7 @@ public class CharEmDAOImpl extends GenericDAOImpl<CharEmEntity, Integer> impleme
         try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
             TypedQuery<Integer> query = entityManager.createQuery("SELECT k.id FROM CharEmEntity k WHERE k.charName = :name", Integer.class);
             query.setParameter("name", name);
-
             return query.getSingleResult();
-
         } catch (NoResultException e) {
             System.out.println("Характер ЧС с именем " + name + " не найден.");
             return -1;

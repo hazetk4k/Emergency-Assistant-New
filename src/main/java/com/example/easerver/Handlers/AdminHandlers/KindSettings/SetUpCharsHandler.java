@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class SetUpChars extends GetHandler {
+public class SetUpCharsHandler extends GetHandler {
 
     private final CharEmDAO charEmDAO;
 
-    public SetUpChars(){
+    public SetUpCharsHandler(){
         this.charEmDAO = new CharEmDAOImpl();
     }
     @Override

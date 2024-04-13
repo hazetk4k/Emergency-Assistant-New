@@ -2,8 +2,6 @@ package com.example.easerver.Handlers.BaseHandlers;
 
 import com.sun.net.httpserver.HttpExchange;
 
-import java.io.IOException;
-
 public abstract class PutHandler extends RequestBodyHandler {
     @Override
     protected void handleRequestBody(HttpExchange exchange, String requestBody) {
