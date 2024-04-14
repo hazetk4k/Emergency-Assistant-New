@@ -29,6 +29,11 @@ public class UserDataEntity {
     @Basic
     @Column(name = "email")
     private String email;
+
+    @Basic
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     @Basic
     @Column(name = "password")
     private String password;
@@ -87,6 +92,14 @@ public class UserDataEntity {
         this.workAddress = workAddress;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -117,6 +130,7 @@ public class UserDataEntity {
         if (homeAddress != null ? !homeAddress.equals(that.homeAddress) : that.homeAddress != null) return false;
         if (workAddress != null ? !workAddress.equals(that.workAddress) : that.workAddress != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
 
         return true;
@@ -131,6 +145,7 @@ public class UserDataEntity {
         result = 31 * result + (homeAddress != null ? homeAddress.hashCode() : 0);
         result = 31 * result + (workAddress != null ? workAddress.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
@@ -143,13 +158,14 @@ public class UserDataEntity {
         this.reportsByEmail = reportsByEmail;
     }
 
-    public UserDataEntity(String name, String surname, String patronymic, String homeAddress, String workAddress, String email, String password) {
+    public UserDataEntity(String name, String surname, String patronymic, String homeAddress, String workAddress, String email, String phoneNumber , String password) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.homeAddress = homeAddress;
         this.workAddress = workAddress;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.password = password;
     }
 }

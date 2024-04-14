@@ -6,12 +6,9 @@ import com.example.easerver.DBTransactions.DAO.ServicesDAO;
 import com.example.easerver.DBTransactions.IMPL.KindEmDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.RelationsDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.ServicesDAOImpl;
-import com.example.easerver.Entities.ServiceKindRelationEntity;
-import com.example.easerver.Entities.TypeEmEntity;
 import com.example.easerver.Handlers.BaseHandlers.DeleteHandler;
 
 import java.util.Map;
-import java.util.Objects;
 
 public class DeleteServiceRelationHandler extends DeleteHandler {
 

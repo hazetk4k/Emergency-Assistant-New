@@ -23,12 +23,16 @@ public class ApplicantProfileHandler extends GetHandler {
             UserDataEntity userProfile = applicantDAO.findByEmail(params.get("email"));
             Gson gson = new Gson();
 
-            ApplicantProfile applicant = new ApplicantProfile(userProfile.getName(),
+            ApplicantProfile applicant = new ApplicantProfile(
+                    userProfile.getName(),
                     userProfile.getSurname(),
                     userProfile.getPatronymic(),
                     userProfile.getHomeAddress(),
                     userProfile.getWorkAddress(),
-                    userProfile.getEmail());
+                    userProfile.getEmail(),
+                    userProfile.getPhoneNumber()
+            );
+
 
             return gson.toJson(applicant);
         } catch (Exception e) {

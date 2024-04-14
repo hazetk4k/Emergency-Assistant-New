@@ -30,7 +30,7 @@ public class GenericDAOImpl<T, ID> implements GenericDAO<T, ID> {
     public List<T> findAll() {
         try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
             EntityTransaction transaction = entityManager.getTransaction();
-            List<T> resultList = null;
+            List<T> resultList;
             try {
                 transaction.begin();
                 String queryString = "SELECT e FROM " + entityClass.getSimpleName() + " e";

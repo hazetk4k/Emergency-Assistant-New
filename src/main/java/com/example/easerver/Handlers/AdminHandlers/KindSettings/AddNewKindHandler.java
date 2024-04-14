@@ -28,6 +28,10 @@ public class AddNewKindHandler extends PostHandler {
             NewKindEm newKindEm = gson.fromJson(requestBody, NewKindEm.class);
             KindEmEntity kindEmEntity = new KindEmEntity();
 
+            if(kindEmDAO.getKindIdByName(newKindEm.getKind_name()) != -1){
+                return 409;
+            }
+
             kindEmEntity.setKindName(newKindEm.getKind_name());
             int char_id = charEmDAO.getCharIdByName(newKindEm.getChar_name());
             kindEmEntity.setIdChar(char_id);

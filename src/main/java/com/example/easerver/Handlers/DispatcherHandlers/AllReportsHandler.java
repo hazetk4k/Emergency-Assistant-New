@@ -13,6 +13,8 @@ import jakarta.persistence.NoResultException;
 
 import java.util.*;
 
+import static com.example.easerver.Services.DateTimeFormat.formatTimestamp;
+
 public class AllReportsHandler extends GetHandler {
     private final ApplicantDAO applicantDAO;
     private final ReportDAO reportDAO;
@@ -44,7 +46,8 @@ public class AllReportsHandler extends GetHandler {
                     reportMap.put("id", report.getIdReport());
                     reportMap.put("type", report.getType());
                     reportMap.put("fio", fullName);
-                    reportMap.put("timestamp", report.getTimestamp());
+                    String formatDateTime = formatTimestamp(report.getTimestamp());
+                    reportMap.put("timestamp", formatDateTime);
                     reportMap.put("place", report.getPlace());
                     reportMap.put("wasSeen", report.getWasSeen());
 

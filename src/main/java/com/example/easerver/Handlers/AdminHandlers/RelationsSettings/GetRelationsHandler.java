@@ -11,8 +11,6 @@ import com.example.easerver.Entities.ServiceEntity;
 import com.example.easerver.Entities.ServiceKindRelationEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import jdk.jshell.Snippet;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -2,16 +2,13 @@ package com.example.easerver.Handlers.AdminHandlers.TypeSettings;
 
 import com.example.easerver.DBTransactions.DAO.KindEmDAO;
 import com.example.easerver.DBTransactions.DAO.TypeEmDAO;
-import com.example.easerver.DBTransactions.IMPL.CharEmDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.KindEmDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.TypeEmDAOImpl;
-import com.example.easerver.Entities.CharEmEntity;
 import com.example.easerver.Entities.KindEmEntity;
 import com.example.easerver.Entities.TypeEmEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
 import com.google.gson.Gson;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

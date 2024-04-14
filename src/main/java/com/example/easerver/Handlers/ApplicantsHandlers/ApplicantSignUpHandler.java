@@ -31,7 +31,9 @@ public class ApplicantSignUpHandler extends PostHandler {
                     applicantProfile.getHomeAddress(),
                     applicantProfile.getWorkAddress(),
                     applicantProfile.getEmail(),
-                    applicantReg.getPassword());
+                    applicantProfile.getPhoneNumber(),
+                    applicantReg.getPassword()
+            );
 
             applicantDAO.save(user);
 

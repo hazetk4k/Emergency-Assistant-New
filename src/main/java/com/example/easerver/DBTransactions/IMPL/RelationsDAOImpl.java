@@ -2,7 +2,6 @@ package com.example.easerver.DBTransactions.IMPL;
 
 import com.example.easerver.DBTransactions.DAO.RelationsDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
-import com.example.easerver.Entities.ReportsEntity;
 import com.example.easerver.Entities.ServiceKindRelationEntity;
 import jakarta.persistence.*;
 

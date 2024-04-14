@@ -8,13 +8,24 @@ public class ApplicantProfile {
     private String workAddress;
     private String email;
 
-    public ApplicantProfile(String name, String surname, String patronymic, String homeAddress, String workAddress, String email) {
+    private String phoneNumber;
+
+    public ApplicantProfile(String name, String surname, String patronymic, String homeAddress, String workAddress, String email, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.homeAddress = homeAddress;
         this.workAddress = workAddress;
         this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {

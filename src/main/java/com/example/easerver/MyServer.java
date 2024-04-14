@@ -46,38 +46,38 @@ public class MyServer {
         //TODO: Ошибки GetHandler - ов
         //контексты администратора
         //Настройки видов ЧС
-        server.createContext("/set-up-chars", new SetUpCharsHandler());
-        server.createContext("/get-all-kinds", new GetAllKindsHandler());
+        server.createContext("/set-up-chars", new SetUpCharsHandler()); //done
+        server.createContext("/get-all-kinds", new GetAllKindsHandler()); //done
         server.createContext("/add-new-kind", new AddNewKindHandler());
         server.createContext("/delete-kind", new DeleteKindHandler());
         //Настройки пользователей
         server.createContext("/add-new-user", new AddNewUserHandler());
         server.createContext("/delete-user", new DeleteUserHandler());
         server.createContext("/update-user-status", new UpdateUserStatus());
-        server.createContext("/get-all-system-users", new GetAllUsersHandler());
+        server.createContext("/get-all-system-users", new GetAllUsersHandler()); //done
         //Настройки типов ЧС
-        server.createContext("/set-up-kinds", new SetUpKindsHandler());
-        server.createContext("/get-all-types", new GetAllTypesHandler());
+        server.createContext("/set-up-kinds", new SetUpKindsHandler()); //done
+        server.createContext("/get-all-types", new GetAllTypesHandler()); //done
         server.createContext("/add-new-type", new AddNewTypeHandler());
         server.createContext("/delete-type", new DeleteTypeHandler());
         //Настройка Связей видов и служб реагирования
-        server.createContext("/get-relations-list", new GetRelationsHandler());
-        server.createContext("/set-up-services", new SetUpServicesHandler());
+        server.createContext("/get-relations-list", new GetRelationsHandler()); //done
+        server.createContext("/set-up-services", new SetUpServicesHandler()); //done
         server.createContext("/add-new-relation", new AddNewRelationHandler());
         server.createContext("/delete-service-relation", new DeleteServiceRelationHandler());
         server.createContext("/delete-all-kind-relations", new DeleteAllRelationsHandler());
 
         //контексты диспетчера
-        server.createContext("/get-all-reports", new AllReportsHandler());
+        server.createContext("/get-all-reports", new AllReportsHandler()); //done
         //TODO:Разобраться с get-that-report
         server.createContext("/get-that-report", new AllReportsHandler());
 
         //контексты заявителя
-        server.createContext("/auth/signup", new ApplicantSignUpHandler());
-        server.createContext("/auth/signin", new ApplicantSignInHandler());
-        server.createContext("/profile", new ApplicantProfileHandler());
-        server.createContext("/sendreport", new ReportHandler());
-        server.createContext("/emergencytypes", new EmergencyTypesHandler());
+        server.createContext("/auth/signup", new ApplicantSignUpHandler()); //done
+        server.createContext("/auth/signin", new ApplicantSignInHandler()); //done
+        server.createContext("/profile", new ApplicantProfileHandler()); //done
+        server.createContext("/sendreport", new ReportHandler()); //done
+        server.createContext("/emergencytypes", new EmergencyTypesHandler()); //done
 
 
         server.setExecutor(null);

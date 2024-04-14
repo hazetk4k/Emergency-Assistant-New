@@ -2,7 +2,6 @@ package com.example.easerver.DBTransactions.IMPL;
 
 import com.example.easerver.DBTransactions.DAO.TypeEmDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
-import com.example.easerver.Entities.SystUserEntity;
 import com.example.easerver.Entities.TypeEmEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;

@@ -16,6 +16,8 @@ public class ServiceEntity {
     private String serviceName;
     @OneToMany(mappedBy = "serviceByServiceId")
     private Collection<ServiceKindRelationEntity> serviceKindRelationsByServiceId;
+    @OneToMany(mappedBy = "serviceByServiceId")
+    private Collection<ServiceAutoRelationEntity> serviceAutoRelationsByServiceId;
 
     public int getServiceId() {
         return serviceId;
@@ -59,5 +61,13 @@ public class ServiceEntity {
 
     public void setServiceKindRelationsByServiceId(Collection<ServiceKindRelationEntity> serviceKindRelationsByServiceId) {
         this.serviceKindRelationsByServiceId = serviceKindRelationsByServiceId;
+    }
+
+    public Collection<ServiceAutoRelationEntity> getServiceAutoRelationsByServiceId() {
+        return serviceAutoRelationsByServiceId;
+    }
+
+    public void setServiceAutoRelationsByServiceId(Collection<ServiceAutoRelationEntity> serviceAutoRelationsByServiceId) {
+        this.serviceAutoRelationsByServiceId = serviceAutoRelationsByServiceId;
     }
 }

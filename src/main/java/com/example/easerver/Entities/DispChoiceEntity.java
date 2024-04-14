@@ -13,8 +13,8 @@ public class DispChoiceEntity {
     @Column(name = "name_char")
     private String nameChar;
     @Basic
-    @Column(name = "name_type")
-    private String nameType;
+    @Column(name = "name_kind")
+    private String nameKind;
     @Basic
     @Column(name = "services")
     private String services;
@@ -39,11 +39,11 @@ public class DispChoiceEntity {
     }
 
     public String getNameType() {
-        return nameType;
+        return nameKind;
     }
 
-    public void setNameType(String nameType) {
-        this.nameType = nameType;
+    public void setNameType(String nameKind) {
+        this.nameKind = nameKind;
     }
 
     public String getServices() {
@@ -63,7 +63,7 @@ public class DispChoiceEntity {
 
         if (id != that.id) return false;
         if (nameChar != null ? !nameChar.equals(that.nameChar) : that.nameChar != null) return false;
-        if (nameType != null ? !nameType.equals(that.nameType) : that.nameType != null) return false;
+        if (nameKind != null ? !nameKind.equals(that.nameKind) : that.nameKind != null) return false;
         if (services != null ? !services.equals(that.services) : that.services != null) return false;
 
         return true;
@@ -73,7 +73,7 @@ public class DispChoiceEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (nameChar != null ? nameChar.hashCode() : 0);
-        result = 31 * result + (nameType != null ? nameType.hashCode() : 0);
+        result = 31 * result + (nameKind != null ? nameKind.hashCode() : 0);
         result = 31 * result + (services != null ? services.hashCode() : 0);
         return result;
     }

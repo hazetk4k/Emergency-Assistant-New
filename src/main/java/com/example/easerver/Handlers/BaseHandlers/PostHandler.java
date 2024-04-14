@@ -18,7 +18,7 @@ public abstract class PostHandler extends RequestBodyHandler {
                     exchange.sendResponseHeaders(code, -1);
                 } else if (shouldReturnResponseBody(requestBody)) {
                     String responseBody = generateResponseBody(requestBody);
-                    System.out.println("\nОтвет клиенту: " + responseBody);
+                    System.out.println("Ответ клиенту: " + responseBody);
                     exchange.sendResponseHeaders(code, responseBody.getBytes().length);
                     try (OutputStream os = exchange.getResponseBody()) {
                         os.write(responseBody.getBytes());

@@ -5,7 +5,6 @@ import com.example.easerver.DBTransactions.IMPL.KindEmDAOImpl;
 import com.example.easerver.Entities.KindEmEntity;
 import com.example.easerver.Handlers.BaseHandlers.DeleteHandler;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Map;
 import java.util.Objects;
 

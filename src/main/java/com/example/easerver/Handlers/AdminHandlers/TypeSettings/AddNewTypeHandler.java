@@ -4,10 +4,8 @@ import com.example.easerver.DBTransactions.DAO.KindEmDAO;
 import com.example.easerver.DBTransactions.DAO.TypeEmDAO;
 import com.example.easerver.DBTransactions.IMPL.KindEmDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.TypeEmDAOImpl;
-import com.example.easerver.Entities.KindEmEntity;
 import com.example.easerver.Entities.TypeEmEntity;
 import com.example.easerver.Handlers.BaseHandlers.PostHandler;
-import com.example.easerver.Models.AdminSettingsModels.NewKindEm;
 import com.example.easerver.Models.AdminSettingsModels.NewTypeEm;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -28,6 +26,10 @@ public class AddNewTypeHandler extends PostHandler {
         try {
             NewTypeEm newKindEm = gson.fromJson(requestBody, NewTypeEm.class);
             TypeEmEntity typeEmEntity = new TypeEmEntity();
+
+            if (typeEmDAO.findByTypeName(newKindEm.getType_name()) != null) {
+                return 409;
+            }
 
             typeEmEntity.setName(newKindEm.getType_name());
             typeEmEntity.setRecommendations(newKindEm.getRecommendations());

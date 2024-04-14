@@ -13,7 +13,7 @@ public class AddNewUserHandler extends PostHandler {
 
     private final SystemUserDAO systemUserDAO;
 
-    public AddNewUserHandler(){
+    public AddNewUserHandler() {
         this.systemUserDAO = new SystemUserDAOImpl();
     }
 
@@ -24,6 +24,10 @@ public class AddNewUserHandler extends PostHandler {
         try {
             SystemUser systemUser = gson.fromJson(output, SystemUser.class);
             SystUserEntity systUserEntity = new SystUserEntity();
+
+            if (systemUserDAO.findByUserLogin(systemUser.getLogin()) != null) {
+                return 409;
+            }
 
             systUserEntity.setLoginSyst(systemUser.getLogin());
             systUserEntity.setPassword(systemUser.getPassword());
