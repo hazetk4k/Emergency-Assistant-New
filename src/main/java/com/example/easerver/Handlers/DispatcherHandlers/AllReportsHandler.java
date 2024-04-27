@@ -9,7 +9,6 @@ import com.example.easerver.Entities.UserDataEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import jakarta.persistence.NoResultException;
 
 import java.util.*;
 
@@ -31,7 +30,7 @@ public class AllReportsHandler extends GetHandler {
         try {
             List<UserDataEntity> users = applicantDAO.findAll();
             for (UserDataEntity user : users) {
-                String fullName = "";
+                String fullName;
                 if (user.getPatronymic() == null || Objects.equals(user.getPatronymic(), "")) {
                     fullName = user.getSurname() + " " + user.getName().charAt(0) + ". ";
                 } else {

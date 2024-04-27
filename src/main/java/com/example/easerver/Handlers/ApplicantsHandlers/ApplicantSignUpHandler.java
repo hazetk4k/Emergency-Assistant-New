@@ -1,5 +1,6 @@
 package com.example.easerver.Handlers.ApplicantsHandlers;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.example.easerver.DBTransactions.DAO.ApplicantDAO;
 import com.example.easerver.DBTransactions.IMPL.ApplicantDAOImpl;
 import com.example.easerver.Entities.UserDataEntity;
@@ -8,6 +9,7 @@ import com.example.easerver.Models.ApplicantModels.ApplicantProfile;
 import com.example.easerver.Models.ApplicantModels.ApplicantReg;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.security.SecureRandom;
 
 public class ApplicantSignUpHandler extends PostHandler {
     private final ApplicantDAO applicantDAO;
@@ -24,6 +26,9 @@ public class ApplicantSignUpHandler extends PostHandler {
 
             ApplicantReg applicantReg = gson.fromJson(output, ApplicantReg.class);
             ApplicantProfile applicantProfile = applicantReg.getProfile();
+
+            String hashPassword = BCrypt.with(new SecureRandom()).hashToString(6, applicantReg.getPassword().toCharArray());
+
             UserDataEntity user = new UserDataEntity(
                     applicantProfile.getName(),
                     applicantProfile.getSurname(),
@@ -32,7 +37,7 @@ public class ApplicantSignUpHandler extends PostHandler {
                     applicantProfile.getWorkAddress(),
                     applicantProfile.getEmail(),
                     applicantProfile.getPhoneNumber(),
-                    applicantReg.getPassword()
+                    hashPassword
             );
 
             applicantDAO.save(user);

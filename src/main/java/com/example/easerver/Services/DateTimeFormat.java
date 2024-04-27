@@ -13,7 +13,7 @@ public class DateTimeFormat {
             Date date = new Date(timestamp.getTime());
             return outputFormat.format(date);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return null;
         }
     }

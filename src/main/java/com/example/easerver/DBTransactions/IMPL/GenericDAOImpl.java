@@ -41,7 +41,7 @@ public class GenericDAOImpl<T, ID> implements GenericDAO<T, ID> {
                 if (transaction != null && transaction.isActive()) {
                     transaction.rollback();
                 }
-                throw new RuntimeException("Ошибка при удалении сущности из базы данных", e);
+                throw new RuntimeException("Ошибка при поиске всех сущностей в базе данных", e);
             }
             return resultList;
         }
@@ -59,7 +59,7 @@ public class GenericDAOImpl<T, ID> implements GenericDAO<T, ID> {
                 if (transaction != null && transaction.isActive()) {
                     transaction.rollback();
                 }
-                throw new RuntimeException("Ошибка при удалении сущности из базы данных", e);
+                throw new RuntimeException("Ошибка при добавлении сущности в базу данных", e);
             }
         }
     }

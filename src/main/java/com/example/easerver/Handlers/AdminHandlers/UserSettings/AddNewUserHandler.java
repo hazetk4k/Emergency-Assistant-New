@@ -1,5 +1,6 @@
 package com.example.easerver.Handlers.AdminHandlers.UserSettings;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.example.easerver.DBTransactions.DAO.SystemUserDAO;
 import com.example.easerver.DBTransactions.IMPL.SystemUserDAOImpl;
 import com.example.easerver.Entities.SystUserEntity;
@@ -8,6 +9,7 @@ import com.example.easerver.Handlers.BaseHandlers.PostHandler;
 import com.example.easerver.Models.SystemUser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.security.SecureRandom;
 
 public class AddNewUserHandler extends PostHandler {
 
@@ -29,8 +31,10 @@ public class AddNewUserHandler extends PostHandler {
                 return 409;
             }
 
+            String hashPassword = BCrypt.with(new SecureRandom()).hashToString(6, systemUser.getPassword().toCharArray());
+
             systUserEntity.setLoginSyst(systemUser.getLogin());
-            systUserEntity.setPassword(systemUser.getPassword());
+            systUserEntity.setPassword(hashPassword);
             systUserEntity.setStatusSyst(systemUser.getStatus());
 
             systemUserDAO.save(systUserEntity);
