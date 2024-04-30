@@ -1,5 +1,7 @@
 package com.example.easerver.ServerManagers;
 
+import com.example.easerver.Handlers.DispatcherHandlers.EmergencyDataHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.ReportDataHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -59,8 +61,9 @@ public class HttpServerManager {
 
             //контексты диспетчера
             httpServer.createContext("/get-all-reports", new AllReportsHandler()); //done
-            //TODO:Разобраться с get-that-report
-            httpServer.createContext("/get-that-report", new AllReportsHandler());
+            //TODO:Разобраться с окном заявления
+            httpServer.createContext("/set-up-emergency-data", new EmergencyDataHandler());
+            httpServer.createContext("/get-report-applicant-data", new ReportDataHandler());
 
             //контексты заявителя
             httpServer.createContext("/auth/signup", new ApplicantSignUpHandler()); //done
