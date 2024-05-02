@@ -1,6 +1,7 @@
 package com.example.easerver.ServerManagers;
 
 import com.example.easerver.Handlers.DispatcherHandlers.EmergencyDataHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.KindsOfCharHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.ReportDataHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -42,16 +43,19 @@ public class HttpServerManager {
             httpServer.createContext("/get-all-kinds", new GetAllKindsHandler()); //done
             httpServer.createContext("/add-new-kind", new AddNewKindHandler());
             httpServer.createContext("/delete-kind", new DeleteKindHandler());
+
             //Настройки пользователей
             httpServer.createContext("/add-new-user", new AddNewUserHandler());
             httpServer.createContext("/delete-user", new DeleteUserHandler());
             httpServer.createContext("/update-user-status", new UpdateUserStatus());
             httpServer.createContext("/get-all-system-users", new GetAllUsersHandler()); //done
+
             //Настройки типов ЧС
             httpServer.createContext("/set-up-kinds", new SetUpKindsHandler()); //done
             httpServer.createContext("/get-all-types", new GetAllTypesHandler()); //done
             httpServer.createContext("/add-new-type", new AddNewTypeHandler());
             httpServer.createContext("/delete-type", new DeleteTypeHandler());
+
             //Настройка Связей видов и служб реагирования
             httpServer.createContext("/get-relations-list", new GetRelationsHandler()); //done
             httpServer.createContext("/set-up-services", new SetUpServicesHandler()); //done
@@ -61,9 +65,9 @@ public class HttpServerManager {
 
             //контексты диспетчера
             httpServer.createContext("/get-all-reports", new AllReportsHandler()); //done
-            //TODO:Разобраться с окном заявления
             httpServer.createContext("/set-up-emergency-data", new EmergencyDataHandler());
             httpServer.createContext("/get-report-applicant-data", new ReportDataHandler());
+            httpServer.createContext("/get-kinds-of-char", new KindsOfCharHandler());
 
             //контексты заявителя
             httpServer.createContext("/auth/signup", new ApplicantSignUpHandler()); //done

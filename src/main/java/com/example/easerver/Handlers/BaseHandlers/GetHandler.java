@@ -3,6 +3,7 @@ package com.example.easerver.Handlers.BaseHandlers;
 import com.example.easerver.Services.QueryParamClass;
 import com.sun.net.httpserver.HttpExchange;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
@@ -28,7 +29,12 @@ public abstract class GetHandler extends BaseHandler {
                 exchange.sendResponseHeaders(405, -1);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            try {
+                exchange.sendResponseHeaders(400, -1);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            System.err.println(e.getMessage());
         }
     }
 

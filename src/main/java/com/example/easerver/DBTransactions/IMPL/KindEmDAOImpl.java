@@ -6,6 +6,8 @@ import com.example.easerver.Entities.KindEmEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import java.util.Collections;
+import java.util.List;
 
 public class KindEmDAOImpl extends GenericDAOImpl<KindEmEntity, Integer> implements KindEmDAO {
     public KindEmDAOImpl() {
@@ -24,6 +26,22 @@ public class KindEmDAOImpl extends GenericDAOImpl<KindEmEntity, Integer> impleme
         } catch (Exception e) {
             System.out.println("Ошибка при поиске характера ЧС по имени: " + e.getMessage());
             return -2;
+        }
+    }
+
+    @Override
+    public List<KindEmEntity> findByCharId(int char_id) {
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            String jpql = "SELECT r FROM KindEmEntity r WHERE r.idChar = :char_id";
+            TypedQuery<KindEmEntity> query = entityManager.createQuery(jpql, KindEmEntity.class);
+            query.setParameter("char_id", char_id);
+            return query.getResultList();
+        } catch (NoResultException e) {
+            System.out.println("Характер ЧС с id " + char_id + " не найден.");
+            return Collections.emptyList();
+        } catch (Exception e) {
+            System.out.println("Ошибка при поиске характера по id:" + e.getMessage());
+            return Collections.emptyList();
         }
     }
 }
