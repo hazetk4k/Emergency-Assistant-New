@@ -1,6 +1,7 @@
 package com.example.easerver.ServerManagers;
 
 import com.example.easerver.Handlers.DispatcherHandlers.EmergencyDataHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.GetServicesByKind;
 import com.example.easerver.Handlers.DispatcherHandlers.KindsOfCharHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.ReportDataHandler;
 import java.io.IOException;
@@ -68,6 +69,7 @@ public class HttpServerManager {
             httpServer.createContext("/set-up-emergency-data", new EmergencyDataHandler());
             httpServer.createContext("/get-report-applicant-data", new ReportDataHandler());
             httpServer.createContext("/get-kinds-of-char", new KindsOfCharHandler());
+            httpServer.createContext("/get-services-by-kind", new GetServicesByKind());
 
             //контексты заявителя
             httpServer.createContext("/auth/signup", new ApplicantSignUpHandler()); //done

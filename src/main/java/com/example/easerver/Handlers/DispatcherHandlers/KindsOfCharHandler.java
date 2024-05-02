@@ -27,13 +27,11 @@ public class KindsOfCharHandler extends GetHandler {
     protected String handleGetRequest(Map<String, String> params) {
         List<String> kindNames = new ArrayList<>();
         try {
-            System.out.println(params.get("char"));
             int char_id = charEmDAO.getCharIdByName(params.get("char"));
             List<KindEmEntity> kinds = kindEmDAO.findByCharId(char_id);
             for (KindEmEntity kind : kinds) {
                 kindNames.add(kind.getKindName());
             }
-            System.out.println(kindNames);
             return gson.toJson(kindNames);
         } catch (Exception e) {
             throw new RuntimeException("Ошибка загрузки сервисов реагирования ЧС", e);
