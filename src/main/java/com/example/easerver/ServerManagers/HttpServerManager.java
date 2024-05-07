@@ -1,5 +1,6 @@
 package com.example.easerver.ServerManagers;
 
+import com.example.easerver.Handlers.DispatcherHandlers.ConfirmChosenServices;
 import com.example.easerver.Handlers.DispatcherHandlers.EmergencyDataHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.GetDispChoicesHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.GetServicesByKindHandler;
@@ -72,8 +73,9 @@ public class HttpServerManager {
             httpServer.createContext("/get-report-applicant-data", new ReportDataHandler()); //done
             httpServer.createContext("/get-kinds-of-char", new KindsOfCharHandler()); //done
             httpServer.createContext("/get-services-by-kind", new GetServicesByKindHandler()); //done
-            httpServer.createContext("/start-action-time", new StartActionsHandler());
-            httpServer.createContext("/get-dispatcher-choice", new GetDispChoicesHandler());
+            httpServer.createContext("/start-action-time", new StartActionsHandler()); //done
+            httpServer.createContext("/get-dispatcher-choice", new GetDispChoicesHandler()); //done
+            httpServer.createContext("/confirm-chosen-services", new ConfirmChosenServices());
 
             //контексты заявителя
             httpServer.createContext("/auth/signup", new ApplicantSignUpHandler()); //done

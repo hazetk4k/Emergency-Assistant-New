@@ -1,6 +1,6 @@
 package com.example.easerver.Models.Report;
 
-public class DispChoiceStartAction {
+public class DispModel_stage1 {
     private String start_action_time;
     private int report_id;
     private String disp_login;
@@ -47,7 +47,7 @@ public class DispChoiceStartAction {
         this.kind_name = kind_name;
     }
 
-    public DispChoiceStartAction(String start_action_time, int report_id, String disp_login, String char_name, String kind_name) {
+    public DispModel_stage1(String start_action_time, int report_id, String disp_login, String char_name, String kind_name) {
         this.start_action_time = start_action_time;
         this.report_id = report_id;
         this.disp_login = disp_login;

@@ -10,7 +10,7 @@ import com.example.easerver.Entities.DispChoiceEntity;
 import com.example.easerver.Entities.ReportsEntity;
 import com.example.easerver.Entities.SystUserEntity;
 import com.example.easerver.Handlers.BaseHandlers.PostHandler;
-import com.example.easerver.Models.Report.DispChoiceStartAction;
+import com.example.easerver.Models.Report.DispModel_stage1;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.sql.Timestamp;
@@ -34,24 +34,24 @@ public class StartActionsHandler extends PostHandler {
     @Override
     protected int handlePostRequest(String requestBody) {
         try {
-            DispChoiceStartAction dispatcherChoiceModel = gson.fromJson(requestBody, DispChoiceStartAction.class);
-            DispChoiceEntity dispatcherChoiceEntity = new DispChoiceEntity();
-            SystUserEntity systUserEntity = systemUserDAO.findByUserLogin(dispatcherChoiceModel.getDisp_login());
-            ReportsEntity report = reportDAO.findById(dispatcherChoiceModel.getReport_id());
+            DispModel_stage1 model = gson.fromJson(requestBody, DispModel_stage1.class);
+            DispChoiceEntity dispChoice = new DispChoiceEntity();
+            SystUserEntity systUserEntity = systemUserDAO.findByUserLogin(model.getDisp_login());
+            ReportsEntity report = reportDAO.findById(model.getReport_id());
 
-            dispatcherChoiceEntity.setNameKind(dispatcherChoiceModel.getKind_name());
-            dispatcherChoiceEntity.setNameChar(dispatcherChoiceModel.getChar_name());
+            dispChoice.setNameKind(model.getKind_name());
+            dispChoice.setNameChar(model.getChar_name());
 
-            String startActionTimeString = dispatcherChoiceModel.getStart_action_time();
+            String startActionTimeString = model.getStart_action_time();
             DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
             LocalDateTime dateTime = LocalDateTime.parse(startActionTimeString, formatter);
             Timestamp startActionsTime = Timestamp.valueOf(dateTime);
 
-            dispatcherChoiceEntity.setStartActionsTime(startActionsTime);
-            dispatcherChoiceEntity.setReportsByRepotId(report);
-            dispatcherChoiceEntity.setDispatcherId(systUserEntity.getIdSyst());
+            dispChoice.setStartActionsTime(startActionsTime);
+            dispChoice.setReportsByRepotId(report);
+            dispChoice.setDispatcherId(systUserEntity.getIdSyst());
 
-            dispChoiceDAO.save(dispatcherChoiceEntity);
+            dispChoiceDAO.save(dispChoice);
             return 200;
         } catch (Exception e) {
             System.out.println(e.getMessage());

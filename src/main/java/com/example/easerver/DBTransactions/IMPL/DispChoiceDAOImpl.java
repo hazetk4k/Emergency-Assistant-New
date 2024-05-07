@@ -3,9 +3,11 @@ package com.example.easerver.DBTransactions.IMPL;
 import com.example.easerver.DBTransactions.DAO.DispChoiceDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Entities.DispChoiceEntity;
+import com.example.easerver.Entities.SystUserEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import java.sql.Timestamp;
 
 public class DispChoiceDAOImpl extends GenericDAOImpl<DispChoiceEntity, Integer> implements DispChoiceDAO {
     public DispChoiceDAOImpl() {
@@ -26,6 +28,17 @@ public class DispChoiceDAOImpl extends GenericDAOImpl<DispChoiceEntity, Integer>
         } catch (Exception e) {
             System.out.println("Ошибка при поиске предпринятых действий: " + e.getMessage());
             return null;
+        }
+    }
+
+    @Override
+    public void confirmChosenServices(DispChoiceEntity dispChoice, String services, Timestamp timestamp) {
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            entityManager.getTransaction().begin();
+            dispChoice.setServices(services);
+            dispChoice.setCallServicesTime(timestamp);
+            entityManager.merge(dispChoice);
+            entityManager.getTransaction().commit();
         }
     }
 }
