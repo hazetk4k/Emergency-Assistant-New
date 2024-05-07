@@ -18,12 +18,16 @@ public abstract class GetHandler extends BaseHandler {
                 Map<String, String> params = QueryParamClass.parseQueryParams(requestURI);
 
                 String response = handleGetRequest(params);
-                System.out.println("\nОтвет клиенту: " + response);
+                if (response != null) {
+                    System.out.println("\nОтвет клиенту: " + response);
 
-                byte[] bytes = response.getBytes();
-                exchange.sendResponseHeaders(200, bytes.length);
-                try (OutputStream os = exchange.getResponseBody()) {
-                    os.write(bytes);
+                    byte[] bytes = response.getBytes();
+                    exchange.sendResponseHeaders(200, bytes.length);
+                    try (OutputStream os = exchange.getResponseBody()) {
+                        os.write(bytes);
+                    }
+                } else {
+                    exchange.sendResponseHeaders(404, -1);
                 }
             } else {
                 exchange.sendResponseHeaders(405, -1);

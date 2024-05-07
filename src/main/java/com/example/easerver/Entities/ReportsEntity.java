@@ -47,7 +47,7 @@ public class ReportsEntity {
     @ManyToOne
     @JoinColumn(name = "user_email", referencedColumnName = "email", insertable = false, updatable = false)
     private UserDataEntity userByEmail;
-    @OneToOne(mappedBy = "reportsByRepotId")
+    @OneToOne(mappedBy = "reportByReportId")
     private DispChoiceEntity dispChoicesByIdReport;
 
     public int getIdReport() {

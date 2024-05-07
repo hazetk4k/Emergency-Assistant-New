@@ -3,6 +3,7 @@ package com.example.easerver.Entities;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user_data", schema = "emergency", catalog = "")
@@ -124,14 +125,14 @@ public class UserDataEntity {
         UserDataEntity that = (UserDataEntity) o;
 
         if (userId != that.userId) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
-        if (patronymic != null ? !patronymic.equals(that.patronymic) : that.patronymic != null) return false;
-        if (homeAddress != null ? !homeAddress.equals(that.homeAddress) : that.homeAddress != null) return false;
-        if (workAddress != null ? !workAddress.equals(that.workAddress) : that.workAddress != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (!Objects.equals(name, that.name)) return false;
+        if (!Objects.equals(surname, that.surname)) return false;
+        if (!Objects.equals(patronymic, that.patronymic)) return false;
+        if (!Objects.equals(homeAddress, that.homeAddress)) return false;
+        if (!Objects.equals(workAddress, that.workAddress)) return false;
+        if (!Objects.equals(email, that.email)) return false;
+        if (!Objects.equals(phoneNumber, that.phoneNumber)) return false;
+        if (!Objects.equals(password, that.password)) return false;
 
         return true;
     }

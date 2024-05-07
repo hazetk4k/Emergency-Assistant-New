@@ -14,15 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GetServicesByKind extends GetHandler {
+public class GetServicesByKindHandler extends GetHandler {
 
     private final ServicesDAO servicesDAO;
     private final KindEmDAO kindEmDAO;
-
     private final RelationsDAO relationsDAO;
     Gson gson = new Gson();
 
-    public GetServicesByKind() {
+    public GetServicesByKindHandler() {
         this.servicesDAO = new ServicesDAOImpl();
         this.kindEmDAO = new KindEmDAOImpl();
         this.relationsDAO = new RelationsDAOImpl();
@@ -33,6 +32,9 @@ public class GetServicesByKind extends GetHandler {
         List<String> servicesNames = new ArrayList<>();
         try {
             int kind_id = kindEmDAO.getKindIdByName(params.get("kind"));
+            //TODO:Проверить
+            if (kind_id == -1) return null;
+
             List<ServiceKindRelationEntity> relations = relationsDAO.findAll();
             for (ServiceKindRelationEntity relation : relations) {
                 if (relation.getKindId() == kind_id) {

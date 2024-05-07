@@ -1,6 +1,15 @@
 package com.example.easerver.Entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "syst_user", schema = "emergency", catalog = "")
@@ -18,6 +27,9 @@ public class SystUserEntity {
     @Basic
     @Column(name = "status_syst")
     private byte statusSyst;
+
+    @OneToMany(mappedBy = "dispatcherBySystemUserId")
+    private Collection<DispChoiceEntity> dispChoicesByEmail;
 
     public int getIdSyst() {
         return idSyst;
@@ -60,8 +72,8 @@ public class SystUserEntity {
 
         if (idSyst != that.idSyst) return false;
         if (statusSyst != that.statusSyst) return false;
-        if (loginSyst != null ? !loginSyst.equals(that.loginSyst) : that.loginSyst != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (!Objects.equals(loginSyst, that.loginSyst)) return false;
+        if (!Objects.equals(password, that.password)) return false;
 
         return true;
     }

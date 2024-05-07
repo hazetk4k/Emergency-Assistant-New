@@ -8,13 +8,13 @@ import com.example.easerver.Models.AdminSettingsModels.SystemUserStatus;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class UpdateUserStatus extends PutHandler {
+public class UpdateUserStatusHandler extends PutHandler {
 
     private final SystemUserDAO systemUserDAO;
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public UpdateUserStatus() {
+    public UpdateUserStatusHandler() {
         this.systemUserDAO = new SystemUserDAOImpl();
     }
 

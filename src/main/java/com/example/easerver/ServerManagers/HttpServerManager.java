@@ -1,9 +1,11 @@
 package com.example.easerver.ServerManagers;
 
 import com.example.easerver.Handlers.DispatcherHandlers.EmergencyDataHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.GetServicesByKind;
+import com.example.easerver.Handlers.DispatcherHandlers.GetDispChoicesHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.GetServicesByKindHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.KindsOfCharHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.ReportDataHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.StartActionsHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -20,7 +22,7 @@ import com.example.easerver.Handlers.AdminHandlers.TypeSettings.SetUpKindsHandle
 import com.example.easerver.Handlers.AdminHandlers.UserSettings.AddNewUserHandler;
 import com.example.easerver.Handlers.AdminHandlers.UserSettings.DeleteUserHandler;
 import com.example.easerver.Handlers.AdminHandlers.UserSettings.GetAllUsersHandler;
-import com.example.easerver.Handlers.AdminHandlers.UserSettings.UpdateUserStatus;
+import com.example.easerver.Handlers.AdminHandlers.UserSettings.UpdateUserStatusHandler;
 import com.example.easerver.Handlers.ApplicantsHandlers.*;
 import com.example.easerver.Handlers.DispatcherHandlers.AllReportsHandler;
 import com.example.easerver.Handlers.SystemSignInHandler;
@@ -48,7 +50,7 @@ public class HttpServerManager {
             //Настройки пользователей
             httpServer.createContext("/add-new-user", new AddNewUserHandler());
             httpServer.createContext("/delete-user", new DeleteUserHandler());
-            httpServer.createContext("/update-user-status", new UpdateUserStatus());
+            httpServer.createContext("/update-user-status", new UpdateUserStatusHandler());
             httpServer.createContext("/get-all-system-users", new GetAllUsersHandler()); //done
 
             //Настройки типов ЧС
@@ -66,10 +68,12 @@ public class HttpServerManager {
 
             //контексты диспетчера
             httpServer.createContext("/get-all-reports", new AllReportsHandler()); //done
-            httpServer.createContext("/set-up-emergency-data", new EmergencyDataHandler());
-            httpServer.createContext("/get-report-applicant-data", new ReportDataHandler());
-            httpServer.createContext("/get-kinds-of-char", new KindsOfCharHandler());
-            httpServer.createContext("/get-services-by-kind", new GetServicesByKind());
+            httpServer.createContext("/set-up-emergency-data", new EmergencyDataHandler()); //done
+            httpServer.createContext("/get-report-applicant-data", new ReportDataHandler()); //done
+            httpServer.createContext("/get-kinds-of-char", new KindsOfCharHandler()); //done
+            httpServer.createContext("/get-services-by-kind", new GetServicesByKindHandler()); //done
+            httpServer.createContext("/start-action-time", new StartActionsHandler());
+            httpServer.createContext("/get-dispatcher-choice", new GetDispChoicesHandler());
 
             //контексты заявителя
             httpServer.createContext("/auth/signup", new ApplicantSignUpHandler()); //done
