@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GetKindCharByType extends GetHandler {
+public class GetKindCharByTypeHandler extends GetHandler {
 
     private final TypeEmDAO typeEmDAO;
     private final KindEmDAO kindEmDAO;
@@ -22,7 +22,7 @@ public class GetKindCharByType extends GetHandler {
 
     Gson gson = new Gson();
 
-    public GetKindCharByType() {
+    public GetKindCharByTypeHandler() {
         this.typeEmDAO = new TypeEmDAOImpl();
         this.kindEmDAO = new KindEmDAOImpl();
         this.charEmDAO = new CharEmDAOImpl();

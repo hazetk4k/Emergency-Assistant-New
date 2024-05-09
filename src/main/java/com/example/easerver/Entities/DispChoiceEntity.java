@@ -20,9 +20,6 @@ public class DispChoiceEntity {
     @Basic
     @Column(name = "services")
     private String services;
-//    @Basic
-//    @Column(name = "repot_id")
-//    private Integer reportId;
 
     @Basic
     @Column(name = "start_actions_time")
@@ -40,6 +37,30 @@ public class DispChoiceEntity {
     @Column(name = "dispatcher_id")
     private Integer dispatcherId;
 
+    @Basic
+    @Column(name = "receive_data_time")
+    private Timestamp receiveDataTime;
+
+    @Basic
+    @Column(name = "additional_services_time")
+    private Timestamp additionalServicesTime;
+
+    @Basic
+    @Column(name = "died_amount")
+    private Integer diedAmount;
+
+    @Basic
+    @Column(name = "people_amount")
+    private Integer peopleAmount;
+
+    @Basic
+    @Column(name = "additional_services")
+    private String additionalServices;
+
+    @Basic
+    @Column(name = "stage")
+    private String stage;
+
     @ManyToOne
     @JoinColumn(name = "dispatcher_id", referencedColumnName = "id_syst", insertable = false, updatable = false)
     private SystUserEntity dispatcherBySystemUserId;
@@ -47,6 +68,7 @@ public class DispChoiceEntity {
     @OneToOne
     @JoinColumn(name = "repot_id", referencedColumnName = "id_report", nullable = false)
     private ReportsEntity reportByReportId;
+
 
     public int getId() {
         return id;
@@ -104,20 +126,61 @@ public class DispChoiceEntity {
         this.callServicesTime = callServicesTime;
     }
 
-//    public Integer getReportId() {
-//        return reportId;
-//    }
-//
-//    public void setReportId(Integer reportId) {
-//        this.reportId = reportId;
-//    }
-
     public Integer getDispatcherId() {
         return dispatcherId;
     }
 
     public void setDispatcherId(Integer dispatcherId) {
         this.dispatcherId = dispatcherId;
+    }
+
+
+    public Timestamp getReceiveDataTime() {
+        return receiveDataTime;
+    }
+
+    public void setReceiveDataTime(Timestamp receiveDataTime) {
+        this.receiveDataTime = receiveDataTime;
+    }
+
+    public Timestamp getAdditionalServicesTime() {
+        return additionalServicesTime;
+    }
+
+    public void setAdditionalServicesTime(Timestamp additionalServicesTime) {
+        this.additionalServicesTime = additionalServicesTime;
+    }
+
+    public Integer getDiedAmount() {
+        return diedAmount;
+    }
+
+    public void setDiedAmount(Integer diedAmount) {
+        this.diedAmount = diedAmount;
+    }
+
+    public Integer getPeopleAmount() {
+        return peopleAmount;
+    }
+
+    public void setPeopleAmount(Integer peopleAmount) {
+        this.peopleAmount = peopleAmount;
+    }
+
+    public String getAdditionalServices() {
+        return additionalServices;
+    }
+
+    public void setAdditionalServices(String additionalServices) {
+        this.additionalServices = additionalServices;
+    }
+
+    public String getStage() {
+        return stage;
+    }
+
+    public void setStage(String stage) {
+        this.stage = stage;
     }
 
     @Override
@@ -131,11 +194,16 @@ public class DispChoiceEntity {
         if (!Objects.equals(nameChar, that.nameChar)) return false;
         if (!Objects.equals(nameKind, that.nameKind)) return false;
         if (!Objects.equals(services, that.services)) return false;
-//        if (!Objects.equals(reportId, that.reportId)) return false;
         if (!Objects.equals(startActionsTime, that.startActionsTime)) return false;
         if (!Objects.equals(endActionsTime, that.endActionsTime)) return false;
         if (!Objects.equals(callServicesTime, that.callServicesTime)) return false;
         if (!Objects.equals(dispatcherId, that.dispatcherId)) return false;
+        if (!Objects.equals(receiveDataTime, that.receiveDataTime)) return false;
+        if (!Objects.equals(additionalServicesTime, that.additionalServicesTime)) return false;
+        if (!Objects.equals(diedAmount, that.diedAmount)) return false;
+        if (!Objects.equals(peopleAmount, that.peopleAmount)) return false;
+        if (!Objects.equals(additionalServices, that.additionalServices)) return false;
+        if (!Objects.equals(stage, that.stage)) return false;
         return true;
     }
 
@@ -145,11 +213,16 @@ public class DispChoiceEntity {
         result = 31 * result + (nameChar != null ? nameChar.hashCode() : 0);
         result = 31 * result + (nameKind != null ? nameKind.hashCode() : 0);
         result = 31 * result + (services != null ? services.hashCode() : 0);
-//        result = 31 * result + (reportId != null ? reportId.hashCode() : 0);
         result = 31 * result + (startActionsTime != null ? startActionsTime.hashCode() : 0);
         result = 31 * result + (endActionsTime != null ? endActionsTime.hashCode() : 0);
         result = 31 * result + (callServicesTime != null ? callServicesTime.hashCode() : 0);
         result = 31 * result + (dispatcherId != null ? dispatcherId.hashCode() : 0);
+        result = 31 * result + (receiveDataTime != null ? receiveDataTime.hashCode() : 0);
+        result = 31 * result + (additionalServicesTime != null ? additionalServicesTime.hashCode() : 0);
+        result = 31 * result + (diedAmount != null ? diedAmount.hashCode() : 0);
+        result = 31 * result + (peopleAmount != null ? peopleAmount.hashCode() : 0);
+        result = 31 * result + (additionalServices != null ? additionalServices.hashCode() : 0);
+        result = 31 * result + (stage != null ? stage.hashCode() : 0);
         return result;
     }
 

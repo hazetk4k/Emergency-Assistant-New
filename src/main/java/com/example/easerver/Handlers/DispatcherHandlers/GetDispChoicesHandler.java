@@ -5,6 +5,7 @@ import com.example.easerver.DBTransactions.IMPL.DispChoiceDAOImpl;
 import com.example.easerver.Entities.DispChoiceEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ public class GetDispChoicesHandler extends GetHandler {
     private final DispChoiceDAO dispChoiceDAO;
 
     Gson gson = new Gson();
+
+    JsonObject json = new JsonObject();
 
     public GetDispChoicesHandler() {
         this.dispChoiceDAO = new DispChoiceDAOImpl();
@@ -25,13 +28,16 @@ public class GetDispChoicesHandler extends GetHandler {
             if (dispChoice == null) {
                 return null;
             } else {
-                Map<String, Object> dispChoiceFields = new HashMap<>();
+                json.addProperty("name_char", dispChoice.getNameChar());
+                json.addProperty("name_kind", dispChoice.getNameKind());
+                json.addProperty("services", dispChoice.getServices());
+                json.addProperty("dead_amount", dispChoice.getDiedAmount());
+                json.addProperty("people_amount", dispChoice.getPeopleAmount());
+                json.addProperty("dispatcher_id", dispChoice.getDispatcherId());
+                json.addProperty("additional_services", dispChoice.getAdditionalServices());
+                json.addProperty("stage", dispChoice.getStage());
 
-                dispChoiceFields.put("name_char", dispChoice.getNameChar());
-                dispChoiceFields.put("name_kind", dispChoice.getNameKind());
-                dispChoiceFields.put("services", dispChoice.getServices());
-
-                return gson.toJson(dispChoiceFields);
+                return gson.toJson(json);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

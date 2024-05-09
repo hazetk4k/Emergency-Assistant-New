@@ -11,13 +11,13 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class ConfirmChosenServices extends PostHandler {
+public class ConfirmChosenServicesHandler extends PostHandler {
 
     private final DispChoiceDAO dispChoiceDAO;
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public ConfirmChosenServices() {
+    public ConfirmChosenServicesHandler() {
         this.dispChoiceDAO = new DispChoiceDAOImpl();
     }
 
@@ -33,7 +33,6 @@ public class ConfirmChosenServices extends PostHandler {
             Timestamp timestamp = Timestamp.valueOf(dateTime);
 
             dispChoiceDAO.confirmChosenServices(dispChoiceEntity, model.getServices(), timestamp);
-
             return 200;
         } catch (Exception e) {
             System.out.println(e.getMessage());

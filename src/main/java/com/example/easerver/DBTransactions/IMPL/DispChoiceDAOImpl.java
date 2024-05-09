@@ -41,4 +41,26 @@ public class DispChoiceDAOImpl extends GenericDAOImpl<DispChoiceEntity, Integer>
             entityManager.getTransaction().commit();
         }
     }
+
+    @Override
+    public void confirmReceivedData(DispChoiceEntity dispChoice, Timestamp timestamp, int people_amount, int died_amount) {
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            entityManager.getTransaction().begin();
+            dispChoice.setReceiveDataTime(timestamp);
+            dispChoice.setDiedAmount(died_amount);
+            dispChoice.setPeopleAmount(people_amount);
+            entityManager.merge(dispChoice);
+            entityManager.getTransaction().commit();
+        }
+    }
+
+    @Override
+    public void confirmAdditionalServices(DispChoiceEntity dispChoice, Timestamp timestamp, String services) {
+
+    }
+
+    @Override
+    public void confirmEndActionsTime(DispChoiceEntity dispChoice, Timestamp timestamp) {
+
+    }
 }
