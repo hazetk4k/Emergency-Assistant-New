@@ -1,14 +1,16 @@
 package com.example.easerver.ServerManagers;
 
-import com.example.easerver.Handlers.DispatcherHandlers.ConfirmChosenServicesHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.ConfirmReceivedDataHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.EmergencyDataHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.GetDispChoicesHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.GetKindCharByTypeHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.GetServicesByKindHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.KindsOfCharHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.ReportDataHandler;
-import com.example.easerver.Handlers.DispatcherHandlers.StartActionsHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmChosenServicesHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmOtherChosenServicesHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmReceivedDataHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.EmergencyDataHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.GetDispChoicesHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.GetKindCharByTypeHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.GetServicesByKindHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.KindsOfCharHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.ReportDataHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.EndActionsHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.StartActionsHandler;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -70,23 +72,28 @@ public class HttpServerManager {
             httpServer.createContext("/delete-all-kind-relations", new DeleteAllRelationsHandler());
 
             //контексты диспетчера
-            httpServer.createContext("/get-all-reports", new AllReportsHandler()); //done
-            httpServer.createContext("/set-up-emergency-data", new EmergencyDataHandler()); //done
-            httpServer.createContext("/get-report-applicant-data", new ReportDataHandler()); //done
-            httpServer.createContext("/get-kinds-of-char", new KindsOfCharHandler()); //done
-            httpServer.createContext("/get-services-by-kind", new GetServicesByKindHandler()); //done
-            httpServer.createContext("/start-action-time", new StartActionsHandler()); //done
-            httpServer.createContext("/get-dispatcher-choice", new GetDispChoicesHandler()); //done
-            httpServer.createContext("/confirm-chosen-services", new ConfirmChosenServicesHandler()); //done
-            httpServer.createContext("/get-kind-char-by-type", new GetKindCharByTypeHandler()); //done
+            //Общее окно
+            httpServer.createContext("/get-all-reports", new AllReportsHandler());
+            //Окно заявления
+            httpServer.createContext("/set-up-emergency-data", new EmergencyDataHandler());
+            httpServer.createContext("/get-report-applicant-data", new ReportDataHandler());
+            httpServer.createContext("/get-kinds-of-char", new KindsOfCharHandler());
+            httpServer.createContext("/get-services-by-kind", new GetServicesByKindHandler());
+            httpServer.createContext("/get-dispatcher-choice", new GetDispChoicesHandler());
+            httpServer.createContext("/get-kind-char-by-type", new GetKindCharByTypeHandler());
+            //обработчики подтверждений стадий реагирования
+            httpServer.createContext("/start-action-time", new StartActionsHandler());
+            httpServer.createContext("/confirm-chosen-services", new ConfirmChosenServicesHandler());
             httpServer.createContext("/confirm-received-data", new ConfirmReceivedDataHandler());
+            httpServer.createContext("/confirm-other-chosen-services", new ConfirmOtherChosenServicesHandler());
+            httpServer.createContext("/end-action-time", new EndActionsHandler());
 
             //контексты заявителя
-            httpServer.createContext("/auth/signup", new ApplicantSignUpHandler()); //done
-            httpServer.createContext("/auth/signin", new ApplicantSignInHandler()); //done
-            httpServer.createContext("/profile", new ApplicantProfileHandler()); //done
-            httpServer.createContext("/sendreport", new ReportHandler()); //done
-            httpServer.createContext("/emergencytypes", new EmergencyTypesHandler()); //done
+            httpServer.createContext("/auth/signup", new ApplicantSignUpHandler());
+            httpServer.createContext("/auth/signin", new ApplicantSignInHandler());
+            httpServer.createContext("/profile", new ApplicantProfileHandler());
+            httpServer.createContext("/sendreport", new ReportHandler());
+            httpServer.createContext("/emergencytypes", new EmergencyTypesHandler());
 
 
             httpServer.setExecutor(null);

@@ -1,4 +1,4 @@
-package com.example.easerver.Handlers.DispatcherHandlers;
+package com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers;
 
 import com.example.easerver.DBTransactions.DAO.KindEmDAO;
 import com.example.easerver.DBTransactions.DAO.RelationsDAO;
@@ -32,7 +32,6 @@ public class GetServicesByKindHandler extends GetHandler {
         List<String> servicesNames = new ArrayList<>();
         try {
             int kind_id = kindEmDAO.getKindIdByName(params.get("kind"));
-            //TODO:Проверить
             if (kind_id == -1) return null;
 
             List<ServiceKindRelationEntity> relations = relationsDAO.findAll();

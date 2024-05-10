@@ -1,7 +1,6 @@
 package com.example.easerver.DBTransactions.DAO;
 
 import com.example.easerver.Entities.DispChoiceEntity;
-import com.example.easerver.Models.Report.DispModel_stage2;
 import java.sql.Timestamp;
 
 public interface DispChoiceDAO extends GenericDAO<DispChoiceEntity, Integer> {

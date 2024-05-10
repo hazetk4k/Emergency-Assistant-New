@@ -1,4 +1,4 @@
-package com.example.easerver.Handlers.DispatcherHandlers;
+package com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers;
 
 import com.example.easerver.DBTransactions.DAO.DispChoiceDAO;
 import com.example.easerver.DBTransactions.IMPL.DispChoiceDAOImpl;
@@ -6,7 +6,6 @@ import com.example.easerver.Entities.DispChoiceEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import java.util.HashMap;
 import java.util.Map;
 
 public class GetDispChoicesHandler extends GetHandler {

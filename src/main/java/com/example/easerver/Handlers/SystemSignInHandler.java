@@ -39,11 +39,11 @@ public class SystemSignInHandler extends PostHandler {
                 systUserEntity = systemUserDAO.findByUserLogin(systemUser.getLogin());
 
                 if (systUserEntity == null) {
-                    return 404; // Not Found
+                    return 404;
                 }
             } catch (Exception e) {
                 System.out.println("Ошибка при поиске пользователя: " + e.getMessage());
-                return 404; // Not Found
+                return 404;
             }
 
             return UserAuthenticator.authenticateUser(systUserEntity.getPassword(), systemUser.getPassword());
@@ -67,7 +67,10 @@ public class SystemSignInHandler extends PostHandler {
     protected String generateResponseBody(String requestBody) {
         Map<String, Integer> jsonResponse = new HashMap<>();
         byte userStatus = systUserEntity.getStatusSyst();
+        int user_Id = systUserEntity.getIdSyst();
         jsonResponse.put("status", (int) userStatus);
+        System.out.println(user_Id);
+        jsonResponse.put("user_id", user_Id);
         return gson.toJson(jsonResponse);
     }
 }

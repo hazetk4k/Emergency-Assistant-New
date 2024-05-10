@@ -1,4 +1,4 @@
-package com.example.easerver.Handlers.DispatcherHandlers;
+package com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers;
 
 import com.example.easerver.DBTransactions.DAO.ApplicantDAO;
 import com.example.easerver.DBTransactions.DAO.ReportDAO;

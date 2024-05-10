@@ -34,7 +34,7 @@ public class AllReportsHandler extends GetHandler {
                 if (user.getPatronymic() == null || Objects.equals(user.getPatronymic(), "")) {
                     fullName = user.getSurname() + " " + user.getName().charAt(0) + ". ";
                 } else {
-                    fullName = user.getSurname() + " " + user.getName().charAt(0) + ". " + user.getName().charAt(0);
+                    fullName = user.getSurname() + " " + user.getName().charAt(0) + ". " + user.getPatronymic().charAt(0) + ". ";
                 }
 
                 List<ReportsEntity> userReportsList = reportDAO.getReportsByUserEmail(user.getEmail());

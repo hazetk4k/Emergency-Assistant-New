@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 import static com.example.easerver.Services.DateTimeFormat.formatTimestamp;
@@ -49,10 +50,16 @@ public class ReportHandler extends PostHandler {
 
     private ReportTableData setNewReportMap(ReportsEntity reportsEntity) {
         UserDataEntity userData = applicantDAO.findByEmail(reportsEntity.getUserEmail());
+        String fullName;
+        if (userData.getPatronymic() == null || Objects.equals(userData.getPatronymic(), "")) {
+            fullName = userData.getSurname() + " " + userData.getName().charAt(0) + ". ";
+        } else {
+            fullName = userData.getSurname() + " " + userData.getName().charAt(0) + ". " + userData.getPatronymic().charAt(0) + ". ";
+        }
         return new ReportTableData(
                 reportsEntity.getIdReport(),
                 reportsEntity.getType(),
-                userData.getName(),
+                fullName,
                 formatTimestamp(reportsEntity.getTimestamp()),
                 reportsEntity.getPlace(),
                 reportsEntity.getWasSeen()

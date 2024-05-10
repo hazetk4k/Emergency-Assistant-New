@@ -1,4 +1,4 @@
-package com.example.easerver.Handlers.DispatcherHandlers;
+package com.example.easerver.Handlers.DispatcherHandlers.StageHandlers;
 
 import com.example.easerver.DBTransactions.DAO.DispChoiceDAO;
 import com.example.easerver.DBTransactions.DAO.ReportDAO;
@@ -10,7 +10,7 @@ import com.example.easerver.Entities.DispChoiceEntity;
 import com.example.easerver.Entities.ReportsEntity;
 import com.example.easerver.Entities.SystUserEntity;
 import com.example.easerver.Handlers.BaseHandlers.PostHandler;
-import com.example.easerver.Models.Report.DispModel_stage1;
+import com.example.easerver.Models.Report.Stages.Stage1Model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.sql.Timestamp;
@@ -34,7 +34,7 @@ public class StartActionsHandler extends PostHandler {
     @Override
     protected int handlePostRequest(String requestBody) {
         try {
-            DispModel_stage1 model = gson.fromJson(requestBody, DispModel_stage1.class);
+            Stage1Model model = gson.fromJson(requestBody, Stage1Model.class);
             DispChoiceEntity dispChoice = new DispChoiceEntity();
             SystUserEntity systUserEntity = systemUserDAO.findByUserLogin(model.getDisp_login());
             ReportsEntity report = reportDAO.findById(model.getReport_id());
@@ -50,6 +50,7 @@ public class StartActionsHandler extends PostHandler {
             dispChoice.setStartActionsTime(startActionsTime);
             dispChoice.setReportsByRepotId(report);
             dispChoice.setDispatcherId(systUserEntity.getIdSyst());
+            dispChoice.setStage("1");
 
             dispChoiceDAO.save(dispChoice);
             return 200;

@@ -1,6 +1,6 @@
-package com.example.easerver.Models.Report;
+package com.example.easerver.Models.Report.Stages;
 
-public class DispModel_stage2 {
+public class Stage2Model {
     private String services;
     private int report_id;
     private String confirm_services_time;
@@ -29,7 +29,7 @@ public class DispModel_stage2 {
         this.confirm_services_time = confirm_services_time;
     }
 
-    public DispModel_stage2(String services, int report_id, String confirm_services_time) {
+    public Stage2Model(String services, int report_id, String confirm_services_time) {
         this.services = services;
         this.report_id = report_id;
         this.confirm_services_time = confirm_services_time;

@@ -3,7 +3,6 @@ package com.example.easerver.DBTransactions.IMPL;
 import com.example.easerver.DBTransactions.DAO.DispChoiceDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Entities.DispChoiceEntity;
-import com.example.easerver.Entities.SystUserEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
@@ -37,6 +36,7 @@ public class DispChoiceDAOImpl extends GenericDAOImpl<DispChoiceEntity, Integer>
             entityManager.getTransaction().begin();
             dispChoice.setServices(services);
             dispChoice.setCallServicesTime(timestamp);
+            dispChoice.setStage("2");
             entityManager.merge(dispChoice);
             entityManager.getTransaction().commit();
         }
@@ -49,6 +49,7 @@ public class DispChoiceDAOImpl extends GenericDAOImpl<DispChoiceEntity, Integer>
             dispChoice.setReceiveDataTime(timestamp);
             dispChoice.setDiedAmount(died_amount);
             dispChoice.setPeopleAmount(people_amount);
+            dispChoice.setStage("3");
             entityManager.merge(dispChoice);
             entityManager.getTransaction().commit();
         }
@@ -56,11 +57,24 @@ public class DispChoiceDAOImpl extends GenericDAOImpl<DispChoiceEntity, Integer>
 
     @Override
     public void confirmAdditionalServices(DispChoiceEntity dispChoice, Timestamp timestamp, String services) {
-
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            entityManager.getTransaction().begin();
+            dispChoice.setAdditionalServices(services);
+            dispChoice.setAdditionalServicesTime(timestamp);
+            dispChoice.setStage("4");
+            entityManager.merge(dispChoice);
+            entityManager.getTransaction().commit();
+        }
     }
 
     @Override
     public void confirmEndActionsTime(DispChoiceEntity dispChoice, Timestamp timestamp) {
-
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            entityManager.getTransaction().begin();
+            dispChoice.setEndActionsTime(timestamp);
+            dispChoice.setStage("5");
+            entityManager.merge(dispChoice);
+            entityManager.getTransaction().commit();
+        }
     }
 }

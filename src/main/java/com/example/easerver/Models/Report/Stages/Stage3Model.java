@@ -1,6 +1,6 @@
-package com.example.easerver.Models.Report;
+package com.example.easerver.Models.Report.Stages;
 
-public class DispModel_stage3 {
+public class Stage3Model {
     private String receivedDataDateTime;
     private int people_in_area_amount;
     private int died_in_disaster_amount;
@@ -39,7 +39,7 @@ public class DispModel_stage3 {
         this.report_id = report_id;
     }
 
-    public DispModel_stage3(String receivedDataDateTime, int people_in_area_amount, int died_in_disaster_amount, int report_id) {
+    public Stage3Model(String receivedDataDateTime, int people_in_area_amount, int died_in_disaster_amount, int report_id) {
         this.receivedDataDateTime = receivedDataDateTime;
         this.people_in_area_amount = people_in_area_amount;
         this.died_in_disaster_amount = died_in_disaster_amount;
