@@ -23,7 +23,6 @@ import static com.example.easerver.Services.DateTimeFormat.formatTimestamp;
 public class ReportHandler extends PostHandler {
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
     private final ReportDAO reportDAO;
     private final ApplicantDAO applicantDAO;
 
@@ -56,14 +55,15 @@ public class ReportHandler extends PostHandler {
         } else {
             fullName = userData.getSurname() + " " + userData.getName().charAt(0) + ". " + userData.getPatronymic().charAt(0) + ". ";
         }
+        String stageName = "Новое заявление";
         return new ReportTableData(
                 reportsEntity.getIdReport(),
                 reportsEntity.getType(),
                 fullName,
                 formatTimestamp(reportsEntity.getTimestamp()),
                 reportsEntity.getPlace(),
-                reportsEntity.getWasSeen()
-                );
+                stageName
+        );
     }
 
     private ReportsEntity getReportsEntity(Report report) {

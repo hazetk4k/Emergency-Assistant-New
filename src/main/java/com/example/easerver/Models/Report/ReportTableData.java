@@ -6,7 +6,7 @@ public class ReportTableData {
     private String fio;
     private String timestamp;
     private String place;
-    private Boolean wasSeen;
+    private String stage_name;
 
     public int getId() {
         return id;
@@ -48,20 +48,20 @@ public class ReportTableData {
         this.place = place;
     }
 
-    public Boolean getWasSeen() {
-        return wasSeen;
+    public String getStage_name() {
+        return stage_name;
     }
 
-    public void setWasSeen(Boolean wasSeen) {
-        this.wasSeen = wasSeen;
+    public void setStage_name(String stage_name) {
+        this.stage_name = stage_name;
     }
 
-    public ReportTableData(int id, String type, String fio, String timestamp, String place, Boolean wasSeen) {
+    public ReportTableData(int id, String type, String fio, String timestamp, String place, String stage_name) {
         this.id = id;
         this.type = type;
         this.fio = fio;
         this.timestamp = timestamp;
         this.place = place;
-        this.wasSeen = wasSeen;
+        this.stage_name = stage_name;
     }
 }

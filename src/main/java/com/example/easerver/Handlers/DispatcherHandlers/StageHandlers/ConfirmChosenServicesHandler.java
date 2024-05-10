@@ -12,9 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ConfirmChosenServicesHandler extends PostHandler {
-
     private final DispChoiceDAO dispChoiceDAO;
-
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public ConfirmChosenServicesHandler() {

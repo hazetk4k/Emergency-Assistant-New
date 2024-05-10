@@ -6,7 +6,6 @@ import com.example.easerver.Entities.ReportsEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -29,6 +28,22 @@ public class ReportDAOImpl extends GenericDAOImpl<ReportsEntity, Integer> implem
         } catch (Exception e) {
             System.out.println("Ошибка при поиске заявлений по email: " + e.getMessage());
             return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public void updateWasSeenById(int reportId) {
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            entityManager.getTransaction().begin();
+            ReportsEntity report = entityManager.find(ReportsEntity.class, reportId);
+            if (report != null) {
+                report.setWasSeen(true);
+                entityManager.merge(report);
+                entityManager.getTransaction().commit();
+                System.out.println("Заявление №" + reportId + " обробатывается");
+            } else {
+                System.out.println("Заявление №" + reportId + " не найдено");
+            }
         }
     }
 }
