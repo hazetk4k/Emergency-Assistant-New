@@ -35,6 +35,7 @@ public class GetDispChoicesHandler extends GetHandler {
                 json.addProperty("dispatcher_id", dispChoice.getDispatcherId());
                 json.addProperty("additional_services", dispChoice.getAdditionalServices());
                 json.addProperty("stage", dispChoice.getStage());
+                json.addProperty("district_name", dispChoice.getDistrictName());
 
                 return gson.toJson(json);
             }

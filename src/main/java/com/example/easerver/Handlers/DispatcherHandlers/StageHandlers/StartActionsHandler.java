@@ -44,6 +44,7 @@ public class StartActionsHandler extends PostHandler {
 
             dispChoice.setNameKind(model.getKind_name());
             dispChoice.setNameChar(model.getChar_name());
+            dispChoice.setDistrictName(model.getDistrict_name());
 
             String startActionTimeString = model.getStart_action_time();
             DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;

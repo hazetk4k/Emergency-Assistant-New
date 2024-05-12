@@ -25,8 +25,7 @@ public class ModelManager {
     public JsonObject getStageName(String stage, int report_id) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("report_id", report_id);
-        ModelManager modelManager = new ModelManager();
-        jsonObject.addProperty("stage_name", modelManager.getStageName(stage));
+        jsonObject.addProperty("stage_name", getStageName(stage));
         return jsonObject;
     }
 }

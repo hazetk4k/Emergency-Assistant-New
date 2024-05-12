@@ -61,6 +61,10 @@ public class DispChoiceEntity {
     @Column(name = "stage")
     private String stage;
 
+    @Basic
+    @Column(name = "district_name")
+    private String districtName;
+
     @ManyToOne
     @JoinColumn(name = "dispatcher_id", referencedColumnName = "id_syst", insertable = false, updatable = false)
     private SystUserEntity dispatcherBySystemUserId;
@@ -134,7 +138,6 @@ public class DispChoiceEntity {
         this.dispatcherId = dispatcherId;
     }
 
-
     public Timestamp getReceiveDataTime() {
         return receiveDataTime;
     }
@@ -183,6 +186,14 @@ public class DispChoiceEntity {
         this.stage = stage;
     }
 
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -204,6 +215,7 @@ public class DispChoiceEntity {
         if (!Objects.equals(peopleAmount, that.peopleAmount)) return false;
         if (!Objects.equals(additionalServices, that.additionalServices)) return false;
         if (!Objects.equals(stage, that.stage)) return false;
+        if (!Objects.equals(districtName, that.districtName)) return false;
         return true;
     }
 
@@ -223,6 +235,7 @@ public class DispChoiceEntity {
         result = 31 * result + (peopleAmount != null ? peopleAmount.hashCode() : 0);
         result = 31 * result + (additionalServices != null ? additionalServices.hashCode() : 0);
         result = 31 * result + (stage != null ? stage.hashCode() : 0);
+        result = 31 * result + (districtName != null ? districtName.hashCode() : 0);
         return result;
     }
 

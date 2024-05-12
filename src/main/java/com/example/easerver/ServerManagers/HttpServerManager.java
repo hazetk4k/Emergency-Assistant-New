@@ -1,5 +1,6 @@
 package com.example.easerver.ServerManagers;
 
+import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.GetAutoByServiceHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmChosenServicesHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmOtherChosenServicesHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmReceivedDataHandler;
@@ -81,6 +82,7 @@ public class HttpServerManager {
             httpServer.createContext("/get-services-by-kind", new GetServicesByKindHandler());
             httpServer.createContext("/get-dispatcher-choice", new GetDispChoicesHandler());
             httpServer.createContext("/get-kind-char-by-type", new GetKindCharByTypeHandler());
+            httpServer.createContext("/get-auto-by-service", new GetAutoByServiceHandler());
             //обработчики подтверждений стадий реагирования
             httpServer.createContext("/start-action-time", new StartActionsHandler());
             httpServer.createContext("/confirm-chosen-services", new ConfirmChosenServicesHandler());

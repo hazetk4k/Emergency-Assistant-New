@@ -5,8 +5,11 @@ import com.example.easerver.DBTransactions.IMPL.DispChoiceDAOImpl;
 import com.example.easerver.Entities.DispChoiceEntity;
 import com.example.easerver.Handlers.BaseHandlers.PostHandler;
 import com.example.easerver.Models.Report.Stages.Stage2Model;
+import com.example.easerver.ServerManagers.WebSocketServer;
+import com.example.easerver.Services.ModelManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -31,6 +34,10 @@ public class ConfirmChosenServicesHandler extends PostHandler {
             Timestamp timestamp = Timestamp.valueOf(dateTime);
 
             dispChoiceDAO.confirmChosenServices(dispChoiceEntity, model.getServices(), timestamp);
+
+            ModelManager modelManager = new ModelManager();
+            JsonObject object = modelManager.getStageName(dispChoiceEntity.getStage(), model.getReport_id());
+            WebSocketServer.sendMessageToAll(gson.toJson(object));
             return 200;
         } catch (Exception e) {
             System.out.println(e.getMessage());

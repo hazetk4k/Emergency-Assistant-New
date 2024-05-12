@@ -14,7 +14,7 @@
         <class>com.example.easerver.Entities.SystUserEntity</class>
         <class>com.example.easerver.Entities.DispChoiceEntity</class>
         <class>com.example.easerver.Entities.AutoEntity</class>
-        <class>com.example.easerver.Entities.ServiceAutoRelationEntity</class>
+        <class>com.example.easerver.Entities.DistrictsEntity</class>
         <properties>
             <property name="javax.persistence.jdbc.time_zone" value="UTC"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/emergency"/>

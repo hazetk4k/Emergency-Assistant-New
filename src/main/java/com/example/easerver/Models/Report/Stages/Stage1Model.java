@@ -7,6 +7,8 @@ public class Stage1Model {
     private String char_name;
     private String kind_name;
 
+    private String district_name;
+
     public String getStart_action_time() {
         return start_action_time;
     }
@@ -47,11 +49,16 @@ public class Stage1Model {
         this.kind_name = kind_name;
     }
 
-    public Stage1Model(String start_action_time, int report_id, String disp_login, String char_name, String kind_name) {
+    public String getDistrict_name() {
+        return district_name;
+    }
+
+    public Stage1Model(String start_action_time, int report_id, String disp_login, String char_name, String kind_name, String district_name) {
         this.start_action_time = start_action_time;
         this.report_id = report_id;
         this.disp_login = disp_login;
         this.char_name = char_name;
         this.kind_name = kind_name;
+        this.district_name = district_name;
     }
 }

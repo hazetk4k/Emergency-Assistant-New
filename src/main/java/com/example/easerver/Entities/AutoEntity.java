@@ -1,8 +1,14 @@
 package com.example.easerver.Entities;
 
-import jakarta.persistence.*;
-
-import java.util.Collection;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "auto", schema = "emergency", catalog = "")
@@ -17,8 +23,12 @@ public class AutoEntity {
     @Basic
     @Column(name = "auto_num")
     private String autoNum;
-    @OneToMany(mappedBy = "autoByAutoId")
-    private Collection<ServiceAutoRelationEntity> serviceAutoRelationsByAutoId;
+    @ManyToOne
+    @JoinColumn(name = "service_id", referencedColumnName = "service_id")
+    private ServiceEntity serviceByServiceId;
+    @ManyToOne
+    @JoinColumn(name = "district_id", referencedColumnName = "district_id")
+    private DistrictsEntity districtsByDistrictId;
 
     public int getAutoId() {
         return autoId;
@@ -44,6 +54,14 @@ public class AutoEntity {
         this.autoNum = autoNum;
     }
 
+    public ServiceEntity getServiceByServiceId() {
+        return serviceByServiceId;
+    }
+
+    public void setServiceByServiceId(ServiceEntity serviceByServiceId) {
+        this.serviceByServiceId = serviceByServiceId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,11 +84,12 @@ public class AutoEntity {
         return result;
     }
 
-    public Collection<ServiceAutoRelationEntity> getServiceAutoRelationsByAutoId() {
-        return serviceAutoRelationsByAutoId;
+    public DistrictsEntity getDistrictsByDistrictId() {
+        return districtsByDistrictId;
     }
 
-    public void setServiceAutoRelationsByAutoId(Collection<ServiceAutoRelationEntity> serviceAutoRelationsByAutoId) {
-        this.serviceAutoRelationsByAutoId = serviceAutoRelationsByAutoId;
+    public void setDistrictsByDistrictId(DistrictsEntity districtsByDistrictId) {
+        this.districtsByDistrictId = districtsByDistrictId;
     }
+
 }
