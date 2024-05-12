@@ -2,8 +2,10 @@ package com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers;
 
 import com.example.easerver.DBTransactions.DAO.ApplicantDAO;
 import com.example.easerver.DBTransactions.DAO.ReportDAO;
+import com.example.easerver.DBTransactions.DAO.TypeEmDAO;
 import com.example.easerver.DBTransactions.IMPL.ApplicantDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.ReportDAOImpl;
+import com.example.easerver.DBTransactions.IMPL.TypeEmDAOImpl;
 import com.example.easerver.Entities.ReportsEntity;
 import com.example.easerver.Entities.UserDataEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
@@ -18,11 +20,14 @@ public class ReportDataHandler extends GetHandler {
 
     private final ApplicantDAO applicantDAO;
 
+    private final TypeEmDAO typeEmDAO;
+
     Gson gson = new Gson();
 
     public ReportDataHandler() {
         this.reportDAO = new ReportDAOImpl();
         this.applicantDAO = new ApplicantDAOImpl();
+        this.typeEmDAO = new TypeEmDAOImpl();
     }
 
     @Override
@@ -71,6 +76,9 @@ public class ReportDataHandler extends GetHandler {
         reportMap.put("casualties_amount", reportsEntity.getCasualtiesAmount());
         reportMap.put("user_in_danger", reportsEntity.getIsUserInDanger());
         reportMap.put("was_seen", reportsEntity.getWasSeen());
+        reportMap.put("received_datetime", DateTimeFormat.formatTimestamp(reportsEntity.getRecievedDateTime()));
+        String recommendations = typeEmDAO.findByTypeName(reportsEntity.getType()).getRecommendations();
+        reportMap.put("recommendations", recommendations);
         return reportMap;
     }
 }

@@ -3,6 +3,7 @@ package com.example.easerver.DBTransactions.IMPL;
 import com.example.easerver.DBTransactions.DAO.AutoDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Entities.AutoEntity;
+import com.example.easerver.Entities.TypeEmEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
@@ -23,11 +24,29 @@ public class AutoDAOImpl extends GenericDAOImpl<AutoEntity, Integer> implements 
             query.setParameter("service_id", service_id);
             return query.getResultList();
         } catch (NoResultException e) {
-            System.out.println("Транспорт по id службы " + service_id + " и id района " + district_id +" не найден.");
+            System.out.println("Транспорт по id службы " + service_id + " и id района " + district_id + " не найден.");
             return Collections.emptyList();
         } catch (Exception e) {
             System.out.println("Ошибка при поиске транспорта служб:" + e.getMessage());
             return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public AutoEntity findByNumber(String autoNum) {
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            TypedQuery<AutoEntity> query = entityManager.createQuery(
+                    "SELECT u FROM AutoEntity u WHERE u.autoNum = :autoNum ", AutoEntity.class);
+            query.setParameter("autoNum", autoNum);
+            System.out.println(autoNum);
+
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Авто с номером " + autoNum + " не найден.");
+            return null;
+        } catch (Exception e) {
+            System.out.println("Ошибка при поиске авто по номеру: " + e.getMessage());
+            return null;
         }
     }
 }

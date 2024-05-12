@@ -6,7 +6,6 @@ import com.example.easerver.Entities.DistrictsEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 public class DistrictsDAOImpl extends GenericDAOImpl<DistrictsEntity, Integer> implements DistrictsDAO {
 

@@ -1,6 +1,13 @@
 package com.example.easerver.ServerManagers;
 
+import com.example.easerver.Handlers.AdminHandlers.AutoSettings.AddNewAutoHandler;
+import com.example.easerver.Handlers.AdminHandlers.AutoSettings.DeleteAutoHandler;
+import com.example.easerver.Handlers.AdminHandlers.AutoSettings.GetAllAutosHandler;
+import com.example.easerver.Handlers.AdminHandlers.DistrictsSettings.AddNewDistrictHandler;
+import com.example.easerver.Handlers.AdminHandlers.DistrictsSettings.DeleteDistrictHandler;
+import com.example.easerver.Handlers.AdminHandlers.DistrictsSettings.SetUpDistrictsHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.GetAutoByServiceHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.GetStageTimings;
 import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmChosenServicesHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmOtherChosenServicesHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.ConfirmReceivedDataHandler;
@@ -53,21 +60,30 @@ public class HttpServerManager {
             httpServer.createContext("/add-new-kind", new AddNewKindHandler());
             httpServer.createContext("/delete-kind", new DeleteKindHandler());
 
+            //Настройка транспорта
+            httpServer.createContext("/get-all-autos", new GetAllAutosHandler());
+            httpServer.createContext("/set-up-district", new SetUpDistrictsHandler());
+            httpServer.createContext("/add-new-district", new AddNewDistrictHandler());
+            httpServer.createContext("/add-new-auto", new AddNewAutoHandler());
+            httpServer.createContext("/delete-district", new DeleteDistrictHandler());
+            httpServer.createContext("/delete-auto", new DeleteAutoHandler());
+
+
             //Настройки пользователей
             httpServer.createContext("/add-new-user", new AddNewUserHandler());
             httpServer.createContext("/delete-user", new DeleteUserHandler());
             httpServer.createContext("/update-user-status", new UpdateUserStatusHandler());
-            httpServer.createContext("/get-all-system-users", new GetAllUsersHandler()); //done
+            httpServer.createContext("/get-all-system-users", new GetAllUsersHandler());
 
             //Настройки типов ЧС
-            httpServer.createContext("/set-up-kinds", new SetUpKindsHandler()); //done
-            httpServer.createContext("/get-all-types", new GetAllTypesHandler()); //done
+            httpServer.createContext("/set-up-kinds", new SetUpKindsHandler());
+            httpServer.createContext("/get-all-types", new GetAllTypesHandler());
             httpServer.createContext("/add-new-type", new AddNewTypeHandler());
             httpServer.createContext("/delete-type", new DeleteTypeHandler());
 
             //Настройка Связей видов и служб реагирования
-            httpServer.createContext("/get-relations-list", new GetRelationsHandler()); //done
-            httpServer.createContext("/set-up-services", new SetUpServicesHandler()); //done
+            httpServer.createContext("/get-relations-list", new GetRelationsHandler());
+            httpServer.createContext("/set-up-services", new SetUpServicesHandler());
             httpServer.createContext("/add-new-relation", new AddNewRelationHandler());
             httpServer.createContext("/delete-service-relation", new DeleteServiceRelationHandler());
             httpServer.createContext("/delete-all-kind-relations", new DeleteAllRelationsHandler());
@@ -75,6 +91,7 @@ public class HttpServerManager {
             //контексты диспетчера
             //Общее окно
             httpServer.createContext("/get-all-reports", new AllReportsHandler());
+
             //Окно заявления
             httpServer.createContext("/set-up-emergency-data", new EmergencyDataHandler());
             httpServer.createContext("/get-report-applicant-data", new ReportDataHandler());
@@ -83,6 +100,8 @@ public class HttpServerManager {
             httpServer.createContext("/get-dispatcher-choice", new GetDispChoicesHandler());
             httpServer.createContext("/get-kind-char-by-type", new GetKindCharByTypeHandler());
             httpServer.createContext("/get-auto-by-service", new GetAutoByServiceHandler());
+            httpServer.createContext("/get-stage-timings", new GetStageTimings());
+
             //обработчики подтверждений стадий реагирования
             httpServer.createContext("/start-action-time", new StartActionsHandler());
             httpServer.createContext("/confirm-chosen-services", new ConfirmChosenServicesHandler());

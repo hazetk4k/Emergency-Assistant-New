@@ -1,7 +1,9 @@
 package com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers;
 
 import com.example.easerver.DBTransactions.DAO.DispChoiceDAO;
+import com.example.easerver.DBTransactions.DAO.SystemUserDAO;
 import com.example.easerver.DBTransactions.IMPL.DispChoiceDAOImpl;
+import com.example.easerver.DBTransactions.IMPL.SystemUserDAOImpl;
 import com.example.easerver.Entities.DispChoiceEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
 import com.google.gson.Gson;
@@ -11,6 +13,7 @@ import java.util.Map;
 public class GetDispChoicesHandler extends GetHandler {
 
     private final DispChoiceDAO dispChoiceDAO;
+    private final SystemUserDAO systemUserDAO;
 
     Gson gson = new Gson();
 
@@ -18,6 +21,7 @@ public class GetDispChoicesHandler extends GetHandler {
 
     public GetDispChoicesHandler() {
         this.dispChoiceDAO = new DispChoiceDAOImpl();
+        this.systemUserDAO = new SystemUserDAOImpl();
     }
 
     @Override
@@ -27,6 +31,7 @@ public class GetDispChoicesHandler extends GetHandler {
             if (dispChoice == null) {
                 return null;
             } else {
+                json.addProperty("choice_id", dispChoice.getId());
                 json.addProperty("name_char", dispChoice.getNameChar());
                 json.addProperty("name_kind", dispChoice.getNameKind());
                 json.addProperty("services", dispChoice.getServices());
@@ -36,6 +41,7 @@ public class GetDispChoicesHandler extends GetHandler {
                 json.addProperty("additional_services", dispChoice.getAdditionalServices());
                 json.addProperty("stage", dispChoice.getStage());
                 json.addProperty("district_name", dispChoice.getDistrictName());
+                json.addProperty("dispatcher_login", systemUserDAO.findById(dispChoice.getDispatcherId()).getLoginSyst());
 
                 return gson.toJson(json);
             }

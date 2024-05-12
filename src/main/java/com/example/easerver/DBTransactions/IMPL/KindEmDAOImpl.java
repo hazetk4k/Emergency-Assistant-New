@@ -24,7 +24,7 @@ public class KindEmDAOImpl extends GenericDAOImpl<KindEmEntity, Integer> impleme
             System.out.println("Вид ЧС с именем " + name + " не найден.");
             return -1;
         } catch (Exception e) {
-            System.out.println("Ошибка при поиске характера ЧС по имени: " + e.getMessage());
+            System.out.println("Ошибка при поиске вида ЧС по имени: " + e.getMessage());
             return -2;
         }
     }
