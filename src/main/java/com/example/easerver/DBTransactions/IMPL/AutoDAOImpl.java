@@ -3,7 +3,6 @@ package com.example.easerver.DBTransactions.IMPL;
 import com.example.easerver.DBTransactions.DAO.AutoDAO;
 import com.example.easerver.DBTransactions.EntityManagerUtil;
 import com.example.easerver.Entities.AutoEntity;
-import com.example.easerver.Entities.TypeEmEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;

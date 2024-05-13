@@ -7,6 +7,7 @@ import com.example.easerver.DBTransactions.IMPL.ApplicantDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.ReportDAOImpl;
 import com.example.easerver.DBTransactions.IMPL.TypeEmDAOImpl;
 import com.example.easerver.Entities.ReportsEntity;
+import com.example.easerver.Entities.TypeEmEntity;
 import com.example.easerver.Entities.UserDataEntity;
 import com.example.easerver.Handlers.BaseHandlers.GetHandler;
 import com.example.easerver.Services.DateTimeFormat;
@@ -77,7 +78,16 @@ public class ReportDataHandler extends GetHandler {
         reportMap.put("user_in_danger", reportsEntity.getIsUserInDanger());
         reportMap.put("was_seen", reportsEntity.getWasSeen());
         reportMap.put("received_datetime", DateTimeFormat.formatTimestamp(reportsEntity.getRecievedDateTime()));
-        String recommendations = typeEmDAO.findByTypeName(reportsEntity.getType()).getRecommendations();
+
+        TypeEmEntity type = typeEmDAO.findByTypeName(reportsEntity.getType());
+        String recommendations;
+        if(type == null){
+            recommendations = "Cохраняйте спокойствие. Постарайтесь удалиться от потенциальной опасности на безопасное расстояние и ожидайте приезда служб.";
+
+        } else {
+            recommendations = type.getRecommendations();
+        }
+
         reportMap.put("recommendations", recommendations);
         return reportMap;
     }
