@@ -19,6 +19,7 @@ import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.Ki
 import com.example.easerver.Handlers.DispatcherHandlers.ReportLoadingHandlers.ReportDataHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.EndActionsHandler;
 import com.example.easerver.Handlers.DispatcherHandlers.StageHandlers.StartActionsHandler;
+import com.example.easerver.Handlers.DispatcherHandlers.StatisticsHandlers.GetTodayReports;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -115,6 +116,9 @@ public class HttpServerManager {
             httpServer.createContext("/profile", new ApplicantProfileHandler());
             httpServer.createContext("/sendreport", new ReportHandler());
             httpServer.createContext("/emergencytypes", new EmergencyTypesHandler());
+
+            // Контексты аналитики:
+            httpServer.createContext("/get-today-reports", new GetTodayReports());
 
 
             httpServer.setExecutor(null);

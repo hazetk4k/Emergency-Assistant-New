@@ -6,7 +6,6 @@ public class UserAuthenticator {
     public static int authenticateUser(String entityPassword, String userPassword) {
         BCrypt.Result result = BCrypt.verifyer().verify(userPassword.toCharArray(), entityPassword);
         if (result.verified) {
-            System.out.println("Все прошло");
             return 200;
         } else {
             System.out.println("Не верный пароль");

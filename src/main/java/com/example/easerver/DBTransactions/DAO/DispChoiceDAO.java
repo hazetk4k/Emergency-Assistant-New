@@ -2,6 +2,7 @@ package com.example.easerver.DBTransactions.DAO;
 
 import com.example.easerver.Entities.DispChoiceEntity;
 import java.sql.Timestamp;
+import java.util.List;
 
 public interface DispChoiceDAO extends GenericDAO<DispChoiceEntity, Integer> {
 
@@ -14,4 +15,7 @@ public interface DispChoiceDAO extends GenericDAO<DispChoiceEntity, Integer> {
     void confirmAdditionalServices(DispChoiceEntity dispChoice, Timestamp timestamp, String services);
 
     void confirmEndActionsTime(DispChoiceEntity dispChoice, Timestamp timestamp);
+
+    List<DispChoiceEntity> findAllChoicesByStage(String stage);
+
 }

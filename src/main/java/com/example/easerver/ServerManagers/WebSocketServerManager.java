@@ -1,5 +1,6 @@
 package com.example.easerver.ServerManagers;
 
+import java.net.InetSocketAddress;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
@@ -8,11 +9,13 @@ public class WebSocketServerManager {
     private static Server webSocketServer;
     private static Thread webSocketThread;
 
+    InetSocketAddress address = new InetSocketAddress(8085);
+
     private static Boolean webSocketServerRunning = false;
 
     public static void startWebSocketServer() {
         webSocketThread = new Thread(() -> {
-            webSocketServer = new Server(8085);
+            webSocketServer = new Server( 8085);
             webSocketServer.setHandler(new WebSocketHandler() {
                 @Override
                 public void configure(WebSocketServletFactory factory) {

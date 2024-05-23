@@ -23,7 +23,6 @@ public class ApplicantSignUpHandler extends PostHandler {
     @Override
     protected int handlePostRequest(String output) {
         try {
-
             ApplicantReg applicantReg = gson.fromJson(output, ApplicantReg.class);
             ApplicantProfile applicantProfile = applicantReg.getProfile();
 
@@ -39,9 +38,7 @@ public class ApplicantSignUpHandler extends PostHandler {
                     applicantProfile.getPhoneNumber(),
                     hashPassword
             );
-
             applicantDAO.save(user);
-
             return 200;
         } catch (Exception e) {
             System.out.println(e.getMessage());

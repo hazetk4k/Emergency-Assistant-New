@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.List;
 
 public class DispChoiceDAOImpl extends GenericDAOImpl<DispChoiceEntity, Integer> implements DispChoiceDAO {
     public DispChoiceDAOImpl() {
@@ -75,6 +77,22 @@ public class DispChoiceDAOImpl extends GenericDAOImpl<DispChoiceEntity, Integer>
             dispChoice.setStage("5");
             entityManager.merge(dispChoice);
             entityManager.getTransaction().commit();
+        }
+    }
+
+    @Override
+    public List<DispChoiceEntity> findAllChoicesByStage(String stage) {
+        try (EntityManager entityManager = EntityManagerUtil.getEntityManager()) {
+            String jpql = "SELECT r FROM DispChoiceEntity r WHERE r.stage = :stage";
+            TypedQuery<DispChoiceEntity> query = entityManager.createQuery(jpql, DispChoiceEntity.class);
+            query.setParameter("stage", stage);
+            return query.getResultList();
+        } catch (NoResultException e) {
+            System.out.println("На данный момент нет заявлений на стадии обработки " + stage + ".");
+            return Collections.emptyList();
+        } catch (Exception e) {
+            System.out.println("Ошибка при поиске результатов работы диспетчера на стадии: " + e.getMessage());
+            return Collections.emptyList();
         }
     }
 }

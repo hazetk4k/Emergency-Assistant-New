@@ -30,11 +30,9 @@ public class SystemSignInHandler extends PostHandler {
         try {
             SystemUser systemUser = gson.fromJson(output, SystemUser.class);
             System.out.println("Получены данные:" + systemUser.getLogin() + " " + systemUser.getPassword());
-
             if (systemUser.getLogin() == null || systemUser.getPassword() == null) {
                 return 400;
             }
-
             try {
                 systUserEntity = systemUserDAO.findByUserLogin(systemUser.getLogin());
 
@@ -45,9 +43,7 @@ public class SystemSignInHandler extends PostHandler {
                 System.out.println("Ошибка при поиске пользователя: " + e.getMessage());
                 return 404;
             }
-
             return UserAuthenticator.authenticateUser(systUserEntity.getPassword(), systemUser.getPassword());
-
         } catch (JsonSyntaxException e) {
             System.out.println("Некорректный формат JSON: " + e.getMessage());
             return 400; // Bad Request
